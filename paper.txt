@@ -1,0 +1,65 @@
+SADL: Sampling, Deliberation, and Pseudo-Labeling for In-Context Learning in Compositional Visual Question Answering
+Long Hoang Dang, Thao Minh Le, Vuong Le, Tu Minh Phuong, Truyen Tran
+2026/4
+Tạp chí
+Discover Artificial Intelligence
+https://link.springer.com/content/pdf/10.1007/s44163-026-01411-z_reference.pdf
+
+VIVID: A Culturally Grounded Benchmark Exposing the Figurative Language Gap in Vietnamese NLP
+Tu Tran Do, Nhat Ngoc Nguyen, Khanh-Tung Tran, Hoang D. Nguyen, Tu Minh Phuong, Long Hoang Dang
+2026/3
+Hội thảo LREC 2026
+
+OWLViz: An Open-World Benchmark for Visual Question Answering
+Thuy Nguyen, Dang Nguyen, Hoang Nguyen, Thuan Luong, Long Hoang Dang, Viet Dac Lai
+Ngày xuất bản 2025/12
+Hội thảo AAMAS 2026
+https://arxiv.org/pdf/2503.07631
+
+Progressive Multi-granular Alignments for Grounded Reasoning in Large Vision-Language Models
+Quang-Hung Le, Long Hoang Dang, Ngan Le, Truyen Tran, Thao Minh Le
+Thirty-Ninth AAAI Conference on Artificial Intelligence (AAAI-25)
+https://ojs.aaai.org/index.php/AAAI/article/download/32471/34626
+
+
+
+AHMsys: An Automated HVAC Modeling System for BIM Project
+Long Hoang Dang, Duy-Hung Nguyen, Thai Quang Le, Thinh Truong Nguyen, Clark Mei, Vu Hoang
+International Conference on Advances in Information and Communication Technology
+https://arxiv.org/pdf/2407.01987
+
+
+Dynamic reasoning for Movie QA: A character-centric approach
+Tạp chí IEEE Transactions on Multimedia
+https://ieeexplore.ieee.org/abstract/document/10272656/
+Long Hoang Dang, Thao Minh Le, Vuong Le, Tu Minh Phuong, Truyen Tran
+
+Hierarchical Object-oriented Spatio-Temporal Reasoning for Video Question Answering
+Long Hoang Dang, Thao Minh Le, Vuong Le, Truyen Tran
+2021
+International Joint Conferences on Artificial Intelligence (IJCAI'21)
+https://arxiv.org/pdf/2106.13432
+
+Object-Centric Representation Learning for Video Question Answering
+Tác giả Long Hoang Dang, Thao Minh Le, Vuong Le, Truyen Tran
+https://arxiv.org/pdf/2104.05166
+Tạp chí International Joint Conference on Neural Networks (IJCNN'21)
+
+
+Pixel-level clustering network for unsupervised image segmentation
+Cuong Manh Hoang, Byeongkeun Kang
+2024/1/1
+Engineering Applications of Artificial Intelligence
+https://arxiv.org/pdf/2310.16234
+
+Generalized Class Discovery in Instance Segmentation
+https://ojs.aaai.org/index.php/AAAI/article/view/32362
+2025/4
+Cuong Manh Hoang, Yeejin Lee, Byeongkeun Kang
+Proceedings of the AAAI Conference on Artificial Intelligence
+
+Unsupervised instance segmentation with superpixels
+Cuong Manh Hoang
+Pattern Recognition
+2025/9/4
+https://arxiv.org/pdf/2509.05352?

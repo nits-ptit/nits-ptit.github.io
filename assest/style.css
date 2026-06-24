@@ -50,7 +50,7 @@ a:hover {
 .header-inner,
 .page,
 .footer {
-  width: min(1360px, calc(100% - 48px));
+  width: min(1360px, calc(100% - 5cm));
   margin: 0 auto;
 }
 
@@ -64,9 +64,10 @@ a:hover {
 .brand {
   display: inline-flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   color: var(--text);
   min-width: 330px;
+  text-align: center;
 }
 
 .brand:hover {
@@ -84,9 +85,13 @@ a:hover {
   color: var(--brand-dark);
   font-size: 19px;
   font-weight: 700;
-  line-height: 1.2;
-  margin-top: 4px;
+  line-height: 1.08;
+  margin-top: 2px;
   white-space: nowrap;
+}
+
+.brand-logo + .brand-tagline {
+  margin-top: 6px;
 }
 
 .nav {
@@ -254,10 +259,6 @@ li {
 }
 
 .publication {
-  display: grid;
-  grid-template-columns: 110px 1fr;
-  gap: 22px;
-  align-items: start;
   padding: 22px 0;
   border-top: 1px solid var(--line);
 }
@@ -265,17 +266,6 @@ li {
 .publication h3 {
   color: var(--brand-dark);
   margin-bottom: 8px;
-}
-
-.pub-thumb {
-  height: 86px;
-  border: 1px solid var(--line);
-  background: #efefef;
-  color: var(--brand-dark);
-  display: grid;
-  place-items: center;
-  font-weight: 800;
-  border-radius: 6px;
 }
 
 .footer {
@@ -298,6 +288,12 @@ li {
   .header-inner {
     align-items: flex-start;
     flex-wrap: wrap;
+  }
+
+  .header-inner,
+  .page,
+  .footer {
+    width: min(100% - 48px, 1360px);
   }
 
   .brand {
@@ -381,11 +377,4 @@ li {
     font-size: 28px;
   }
 
-  .publication {
-    grid-template-columns: 1fr;
-  }
-
-  .pub-thumb {
-    width: 110px;
-  }
 }

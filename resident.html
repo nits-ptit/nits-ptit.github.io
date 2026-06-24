@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NITS Research Residency | NITS Lab</title>
+    <meta
+      name="description"
+      content="Chương trình NITS Research Residency kết nối sinh viên, mentor học thuật và đối tác để phát triển năng lực nghiên cứu AI."
+    />
+    <style>
+      :root {
+        --ink: #101820;
+        --muted: #5c6470;
+        --brand: #7b1717;
+        --brand-2: #0e1f3d;
+        --paper: #fbfaf7;
+        --soft: #f0ebe2;
+        --line: #d9d0c3;
+        --white: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+        font-size: 18px;
+        line-height: 1.65;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: rgba(251, 250, 247, 0.92);
+        border-bottom: 1px solid rgba(217, 208, 195, 0.8);
+        backdrop-filter: blur(14px);
+      }
+
+      .nav {
+        width: min(1180px, calc(100% - 40px));
+        margin: 0 auto;
+        min-height: 76px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        color: var(--brand-2);
+      }
+
+      .brand img {
+        width: 58px;
+        height: 58px;
+        object-fit: contain;
+      }
+
+      .brand span {
+        display: grid;
+        line-height: 1.15;
+      }
+
+      .brand small {
+        color: var(--brand);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 18px;
+        color: var(--muted);
+        font-size: 15px;
+        font-weight: 650;
+      }
+
+      .nav-links a:hover {
+        color: var(--brand);
+      }
+
+      .hero {
+        position: relative;
+        min-height: calc(100vh - 76px);
+        display: grid;
+        align-items: center;
+        overflow: hidden;
+        background: var(--paper);
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url("assest/image/nits.png");
+        background-repeat: no-repeat;
+        background-position: right 7vw center;
+        background-size: min(42vw, 520px);
+        opacity: 0.08;
+        pointer-events: none;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 1px;
+        background: var(--line);
+      }
+
+      .hero-inner {
+        position: relative;
+        width: min(1180px, calc(100% - 40px));
+        margin: 0 auto;
+        padding: 72px 0 96px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--brand);
+        font-size: 15px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 42px;
+        height: 3px;
+        background: var(--brand);
+      }
+
+      h1 {
+        max-width: 860px;
+        margin: 18px 0 22px;
+        color: var(--brand-2);
+        font-size: clamp(46px, 7vw, 86px);
+        line-height: 0.98;
+        letter-spacing: 0;
+      }
+
+      .hero-copy {
+        max-width: 760px;
+        color: #303846;
+        font-size: clamp(19px, 2.2vw, 25px);
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 34px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 12px 18px;
+        border: 1px solid var(--brand);
+        background: var(--brand);
+        color: var(--white);
+        font-weight: 800;
+      }
+
+      .button.secondary {
+        background: transparent;
+        color: var(--brand);
+      }
+
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1px;
+        max-width: 920px;
+        margin-top: 54px;
+        background: var(--line);
+        border: 1px solid var(--line);
+      }
+
+      .stat {
+        background: rgba(255, 255, 255, 0.78);
+        padding: 20px;
+      }
+
+      .stat strong {
+        display: block;
+        color: var(--brand-2);
+        font-size: 26px;
+        line-height: 1.1;
+      }
+
+      .stat span {
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 650;
+      }
+
+      .section {
+        width: min(1180px, calc(100% - 40px));
+        margin: 0 auto;
+        padding: 84px 0;
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: minmax(220px, 360px) 1fr;
+        gap: 52px;
+        align-items: start;
+        margin-bottom: 34px;
+      }
+
+      h2 {
+        margin: 0;
+        color: var(--brand-2);
+        font-size: clamp(32px, 4vw, 52px);
+        line-height: 1.08;
+      }
+
+      .section-lead {
+        color: #303846;
+        font-size: 21px;
+        text-align: justify;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .card {
+        background: var(--white);
+        border: 1px solid var(--line);
+        padding: 24px;
+      }
+
+      .card h3,
+      .track h3,
+      .timeline h3,
+      .role h3 {
+        margin: 0 0 10px;
+        color: var(--brand);
+        font-size: 24px;
+        line-height: 1.2;
+      }
+
+      .card p,
+      .track p,
+      .timeline p,
+      .role p,
+      .step p {
+        color: var(--muted);
+        text-align: justify;
+      }
+
+      .tracks {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .track {
+        min-height: 300px;
+        background: var(--brand-2);
+        color: var(--white);
+        padding: 34px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .track h3,
+      .track p {
+        color: var(--white);
+      }
+
+      .track ul {
+        margin: 22px 0 0;
+        padding-left: 22px;
+      }
+
+      .track li {
+        margin: 8px 0;
+      }
+
+      .steps {
+        counter-reset: step;
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .step {
+        counter-increment: step;
+        background: var(--white);
+        border: 1px solid var(--line);
+        padding: 22px;
+      }
+
+      .step::before {
+        content: "0" counter(step);
+        display: block;
+        margin-bottom: 24px;
+        color: var(--brand);
+        font-size: 28px;
+        font-weight: 900;
+      }
+
+      .step h3 {
+        margin: 0 0 8px;
+        color: var(--brand-2);
+        font-size: 20px;
+      }
+
+      .timeline-wrap {
+        display: grid;
+        gap: 14px;
+      }
+
+      .timeline {
+        display: grid;
+        grid-template-columns: 180px 1fr;
+        gap: 26px;
+        background: var(--white);
+        border: 1px solid var(--line);
+        padding: 24px;
+      }
+
+      .time {
+        color: var(--brand-2);
+        font-size: 18px;
+        font-weight: 900;
+      }
+
+      .roles {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .role {
+        background: var(--soft);
+        border-left: 5px solid var(--brand);
+        padding: 24px;
+      }
+
+      .cta {
+        background: var(--brand-2);
+        color: var(--white);
+      }
+
+      .cta .section {
+        padding: 72px 0;
+      }
+
+      .cta-box {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 28px;
+        align-items: center;
+      }
+
+      .cta h2,
+      .cta p {
+        color: var(--white);
+      }
+
+      .cta p {
+        max-width: 760px;
+        margin-top: 14px;
+      }
+
+      .footer {
+        width: min(1180px, calc(100% - 40px));
+        margin: 0 auto;
+        padding: 28px 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      @media (max-width: 980px) {
+        .nav {
+          align-items: flex-start;
+          flex-direction: column;
+          padding: 14px 0;
+        }
+
+        .nav-links {
+          justify-content: flex-start;
+        }
+
+        .hero {
+          min-height: auto;
+        }
+
+        .hero::before {
+          background-position: right -80px top 40px;
+          background-size: 360px;
+        }
+
+        .hero-stats,
+        .cards,
+        .steps,
+        .roles {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .section-head,
+        .tracks,
+        .cta-box {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 620px) {
+        body {
+          font-size: 16px;
+        }
+
+        .nav,
+        .hero-inner,
+        .section,
+        .footer {
+          width: min(100% - 28px, 1180px);
+        }
+
+        .nav-links {
+          gap: 10px 14px;
+        }
+
+        .hero-inner {
+          padding: 56px 0 72px;
+        }
+
+        .hero-stats,
+        .cards,
+        .steps,
+        .roles {
+          grid-template-columns: 1fr;
+        }
+
+        .timeline {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        .track {
+          min-height: auto;
+          padding: 26px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <nav class="nav" aria-label="Điều hướng Research Residency">
+        <a class="brand" href="index.html">
+          <img src="assest/image/nits.png" alt="NITS Lab" />
+          <span>
+            NITS Research Residency
+            <small>Nurturing IT Student Talent</small>
+          </span>
+        </a>
+        <div class="nav-links">
+          <a href="#overview">Tổng quan</a>
+          <a href="#tracks">Lộ trình</a>
+          <a href="#selection">Tuyển chọn</a>
+          <a href="#partners">Đối tác</a>
+          <a href="#contact">Liên hệ</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-inner">
+          <span class="eyebrow">Research Residency Programme</span>
+          <h1>Không gian tăng tốc cho sinh viên muốn làm nghiên cứu AI nghiêm túc.</h1>
+          <p class="hero-copy">
+            NITS Research Residency kết nối sinh viên tài năng với mentor nghiên
+            cứu, đối tác công nghiệp và các nhóm học thuật để biến năng lực học
+            thuật thành sản phẩm nghiên cứu có chuẩn mực, có lộ trình và có tác
+            động thực tế.
+          </p>
+          <div class="hero-actions">
+            <a class="button" href="#selection">Xem quy trình tham gia</a>
+            <a class="button secondary" href="#partners">Dành cho đối tác</a>
+          </div>
+          <div class="hero-stats" aria-label="Điểm nổi bật của chương trình">
+            <div class="stat">
+              <strong>2 năm</strong>
+              <span>Research Track chuyên sâu</span>
+            </div>
+            <div class="stat">
+              <strong>5 bước</strong>
+              <span>Quy trình tuyển chọn có đánh giá rõ ràng</span>
+            </div>
+            <div class="stat">
+              <strong>3 bên</strong>
+              <span>Resident, mentor và đối tác đồng hành</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="overview">
+        <div class="section-head">
+          <h2>Vì sao có Research Residency?</h2>
+          <p class="section-lead">
+            Chương trình được thiết kế như một cầu nối giữa đào tạo đại học,
+            nghiên cứu học thuật và nhu cầu thực tế của doanh nghiệp. Resident
+            được đặt trong một môi trường có mentor, mục tiêu, nhịp đánh giá và
+            kỳ vọng đầu ra rõ ràng.
+          </p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <h3>Nghiên cứu có định hướng</h3>
+            <p>
+              Sinh viên không chỉ làm bài tập hoặc dự án ngắn hạn, mà theo đuổi
+              một bài toán nghiên cứu đủ sâu, có khả năng phát triển thành báo
+              cáo kỹ thuật, benchmark, paper hoặc prototype.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Mentoring sát sao</h3>
+            <p>
+              Resident được đồng hành bởi mentor học thuật, có lịch review đều
+              đặn và nhận phản hồi về đọc paper, thiết kế thí nghiệm, viết học
+              thuật và trình bày kết quả.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Kết nối đối tác</h3>
+            <p>
+              Đối tác công nghiệp hoặc học thuật có thể đóng góp bài toán, dữ
+              liệu, chuyên môn miền ứng dụng, môi trường triển khai và cơ hội
+              thực tập/nghiên cứu tiếp theo.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="tracks">
+        <div class="section-head">
+          <h2>Research Track cho hành trình nghiên cứu dài hạn</h2>
+          <p class="section-lead">
+            Residency tập trung vào Research Track, một lộ trình khoảng 2 năm
+            dành cho sinh viên muốn phát triển năng lực nghiên cứu độc lập, làm
+            việc với mentor và theo đuổi các bài toán AI có chiều sâu học thuật.
+          </p>
+        </div>
+        <div class="tracks">
+          <article class="track">
+            <div>
+              <h3>Research Track</h3>
+              <p>
+                Lộ trình khoảng 2 năm dành cho resident muốn phát triển năng lực
+                nghiên cứu độc lập trong AI, machine learning, language models,
+                vision-language reasoning và domain generalization.
+              </p>
+            </div>
+            <ul>
+              <li>Đọc và phân tích literature có hệ thống</li>
+              <li>Xây dựng giả thuyết, benchmark và thí nghiệm</li>
+              <li>Viết báo cáo, paper hoặc artifact nghiên cứu</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="selection">
+        <div class="section-head">
+          <h2>Quy trình tuyển chọn 5 bước</h2>
+          <p class="section-lead">
+            Chương trình ưu tiên những ứng viên có nền tảng tốt, tinh thần tự
+            học, khả năng đi đường dài và sự nghiêm túc với nghiên cứu. Quy trình
+            tuyển chọn được chia thành các bước giúp đánh giá cả năng lực kỹ
+            thuật lẫn độ phù hợp.
+          </p>
+        </div>
+        <div class="steps">
+          <article class="step">
+            <h3>Hồ sơ</h3>
+            <p>CV, bảng điểm, dự án đã làm và một đoạn ngắn về hướng quan tâm.</p>
+          </article>
+          <article class="step">
+            <h3>Đánh giá nền tảng</h3>
+            <p>Kiểm tra kiến thức lập trình, toán, machine learning hoặc NLP/CV.</p>
+          </article>
+          <article class="step">
+            <h3>Mini task</h3>
+            <p>Bài tập nhỏ để quan sát cách đọc tài liệu, thực nghiệm và báo cáo.</p>
+          </article>
+          <article class="step">
+            <h3>Phỏng vấn</h3>
+            <p>Trao đổi với mentor về mục tiêu, thời gian cam kết và văn hóa làm việc.</p>
+          </article>
+          <article class="step">
+            <h3>Onboarding</h3>
+            <p>Chốt đề tài khởi động, cadence review và kỳ vọng đầu ra.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Lộ trình Research Track trong 2 năm</h2>
+          <p class="section-lead">
+            Residency không phải một hoạt động ngắn hạn. Resident được kỳ vọng
+            duy trì cam kết, ghi nhận tiến độ và tham gia các buổi review định
+            kỳ để dần hình thành năng lực nghiên cứu độc lập.
+          </p>
+        </div>
+        <div class="timeline-wrap">
+          <article class="timeline">
+            <div class="time">Giai đoạn 1</div>
+            <div>
+              <h3>Nền tảng và định vị bài toán</h3>
+              <p>
+                Đọc paper cốt lõi, tái lập baseline, hiểu dữ liệu và xác định
+                khoảng trống nghiên cứu phù hợp với năng lực của resident.
+              </p>
+            </div>
+          </article>
+          <article class="timeline">
+            <div class="time">Giai đoạn 2</div>
+            <div>
+              <h3>Thực nghiệm và mở rộng</h3>
+              <p>
+                Xây dựng phương pháp, benchmark, pipeline đánh giá, phân tích
+                lỗi và so sánh có hệ thống với các hướng tiếp cận liên quan.
+              </p>
+            </div>
+          </article>
+          <article class="timeline">
+            <div class="time">Giai đoạn 3</div>
+            <div>
+              <h3>Viết, công bố và chuyển giao</h3>
+              <p>
+                Hoàn thiện báo cáo kỹ thuật, paper, code hoặc prototype; trình
+                bày kết quả với lab, mentor và các đối tác liên quan.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="partners">
+        <div class="section-head">
+          <h2>Vai trò của đối tác</h2>
+          <!-- <p class="section-lead">
+            Tài liệu chương trình nhấn mạnh sự phối hợp giữa research mentor,
+            industry partner và research hoặc academic institution partner. Mỗi
+            bên đóng góp một phần để resident có môi trường phát triển thực chất.
+          </p> -->
+        </div>
+        <div class="roles">
+          <article class="role">
+            <h3>Research Mentor</h3>
+            <p>
+              Định hướng bài toán, phản biện phương pháp, hỗ trợ resident đọc
+              literature, thiết kế thí nghiệm và phát triển năng lực viết học
+              thuật.
+            </p>
+          </article>
+          <article class="role">
+            <h3>Industry Partner</h3>
+            <p>
+              Cung cấp bài toán thực tế, dữ liệu hoặc bối cảnh triển khai; hỗ
+              trợ resident hiểu ràng buộc vận hành và giá trị ứng dụng.
+            </p>
+          </article>
+          <article class="role">
+            <h3>Academic Partner</h3>
+            <p>
+              Đồng hướng dẫn, đồng tổ chức seminar, trao đổi sinh viên hoặc mở
+              rộng hợp tác nghiên cứu với các nhóm trong và ngoài nước.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="cta" id="contact">
+        <div class="section">
+          <div class="cta-box">
+            <div>
+              <h2>Sẵn sàng cùng NITS Lab xây dựng thế hệ resident tiếp theo?</h2>
+              <p>
+                Sinh viên, mentor và đối tác quan tâm có thể bắt đầu bằng một
+                buổi trao đổi ngắn về mục tiêu, năng lực hiện tại và hướng hợp
+                tác phù hợp.
+              </p>
+            </div>
+            <a class="button" href="index.html">Quay về NITS Lab</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>
+        &copy; 2026 NITS Lab. 
+      </p>
+    </footer>
+  </body>
+</html>
