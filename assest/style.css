@@ -64,10 +64,10 @@ a:hover {
 .brand {
   display: inline-flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   color: var(--text);
   min-width: 330px;
-  text-align: center;
+  text-align: left;
 }
 
 .brand:hover {
