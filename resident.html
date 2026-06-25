@@ -236,7 +236,7 @@
       .section {
         width: min(1180px, calc(100% - 40px));
         margin: 0 auto;
-        padding: 84px 0;
+        padding: 72px 0;
       }
 
       .section-head {
@@ -592,8 +592,7 @@
       /* ===== Horizontal Timeline (NEW) ===== */
       .timeline-h {
         position: relative;
-        margin-top: 80px;
-        margin-bottom: 80px;
+        margin: 44px 0 0;
       }
 
       .timeline-axis {
@@ -610,72 +609,73 @@
       .timeline-items {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
-        gap: 12px;
+        gap: 0;
+        min-height: 300px;
         position: relative;
         z-index: 1;
       }
 
       .timeline-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        position: relative;
+        min-height: 300px;
       }
 
-      /* Items above the axis */
-      .timeline-item--above {
-        justify-content: flex-start;
-      }
-
-      .timeline-item--above .timeline-content {
-        order: 1;
-        margin-bottom: 24px;
+      .timeline-content {
+        position: absolute;
+        left: 50%;
+        width: min(190px, calc(100% - 12px));
+        transform: translateX(-50%);
         text-align: center;
       }
 
-      .timeline-item--above .timeline-node {
-        order: 2;
+      .timeline-item--above .timeline-content {
+        bottom: calc(50% + 22px);
       }
 
       .timeline-item--above::after {
         content: "";
         position: absolute;
-        top: -24px;
+        left: 50%;
+        top: calc(50% - 22px);
+        transform: translateX(-50%);
         width: 2px;
-        height: 24px;
+        height: 22px;
         background: var(--timeline-color, #d9b450);
       }
 
-      /* Items below the axis */
-      .timeline-item--below {
-        justify-content: flex-end;
+      .timeline-item--above .timeline-node {
+        top: calc(50% + 34px);
       }
 
       .timeline-item--below .timeline-node {
-        order: 1;
+        bottom: calc(50% + 34px);
       }
 
       .timeline-item--below .timeline-content {
-        order: 2;
-        margin-top: 24px;
-        text-align: center;
+        top: calc(50% + 22px);
       }
 
       .timeline-item--below::after {
         content: "";
         position: absolute;
-        bottom: -24px;
+        left: 50%;
+        top: 50%;
+        transform: translateX(-50%);
         width: 2px;
-        height: 24px;
+        height: 22px;
         background: var(--timeline-color, #3f6fa3);
       }
 
       /* Node styling: concentric circles */
       .timeline-node {
-        position: relative;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
         width: 70px;
         height: 70px;
         display: grid;
         place-items: center;
+        z-index: 2;
       }
 
       .timeline-node::before {
@@ -753,7 +753,9 @@
         font-size: 13px;
         line-height: 1.4;
         margin-top: 4px;
-        max-width: 140px;
+        max-width: 170px;
+        margin-left: auto;
+        margin-right: auto;
       }
 
       .timeline-v {
@@ -762,12 +764,25 @@
 
       @media (max-width: 1024px) {
         .timeline-items {
-          gap: 8px;
+          gap: 0;
+          min-height: 280px;
+        }
+
+        .timeline-item {
+          min-height: 280px;
         }
 
         .timeline-item--above::after,
         .timeline-item--below::after {
           height: 18px;
+        }
+
+        .timeline-item--above .timeline-node {
+          top: calc(50% + 30px);
+        }
+
+        .timeline-item--below .timeline-node {
+          bottom: calc(50% + 30px);
         }
 
         .timeline-node {
@@ -1185,6 +1200,10 @@
           width: min(100% - 28px, 1180px);
         }
 
+        .section {
+          padding: 56px 0;
+        }
+
         .nav-links {
           gap: 10px 14px;
         }
@@ -1283,7 +1302,7 @@
           </p>
           <div class="hero-actions">
             <a class="button" href="#selection">Xem quy trình tham gia</a>
-            <a class="button secondary" href="#partners">Dành cho đối tác</a>
+            <!-- <a class="button secondary" href="#partners">Dành cho đối tác</a> -->
           </div>
           <div class="hero-stats" aria-label="Điểm nổi bật của chương trình">
             <div class="stat">
@@ -1438,7 +1457,7 @@
                   <span class="timeline-title">Entrance test</span>
                 </div>
                 <div class="timeline-date">29/07</div>
-                <div class="timeline-desc">Thi đầu vào (1 ngày)</div>
+                <div class="timeline-desc">Thi đầu vào </div>
               </div>
             </div>
 
@@ -1496,8 +1515,7 @@
               <span class="tl-eyebrow">Vòng 1 · CV</span>
               <div class="tl-date">05/07 – 20/07</div>
               <p class="tl-desc">
-                Nộp hồ sơ đăng ký (CV, bảng điểm, portfolio). Công bố kết quả
-                và mở đăng ký ca thi đầu vào ngày 25/07.
+                Nộp hồ sơ đăng ký.
               </p>
             </div>
           </div>
@@ -1508,7 +1526,7 @@
               <span class="tl-eyebrow">Vòng 2 · Entrance test</span>
               <div class="tl-date">29/07</div>
               <p class="tl-desc">
-                Thi kiểm tra đầu vào trong 1 ngày. Kết quả công bố ngày 31/07.
+                Thi đầu vào trong 1 ngày.
               </p>
             </div>
           </div>
@@ -1519,8 +1537,7 @@
               <span class="tl-eyebrow">Vòng 3 · Coding contest</span>
               <div class="tl-date">05/08</div>
               <p class="tl-desc">
-                Thi lập trình tính giờ. Kết quả và danh sách bài báo cần tìm
-                hiểu công bố ngày 08/08.
+                Thi lập trình.
               </p>
             </div>
           </div>
@@ -1531,8 +1548,7 @@
               <span class="tl-eyebrow">Vòng 4 · Video presentation</span>
               <div class="tl-date">08/08 – 19/08</div>
               <p class="tl-desc">
-                Nhận paper, dành thời gian tìm hiểu và thuyết trình. Kết quả
-                công bố ngày 22/08.
+                Nhận paper và thuyết trình.
               </p>
             </div>
           </div>
@@ -1543,8 +1559,7 @@
               <span class="tl-eyebrow">Vòng 5 · Matching</span>
               <div class="tl-date">23/08 – 05/09</div>
               <p class="tl-desc">
-                Gửi CV cho mentor, phỏng vấn online và ghép mentor. Kết quả
-                chính thức công bố ngày 05/09.
+                Ghép mentor và công bố kết quả.
               </p>
             </div>
           </div>
@@ -1553,7 +1568,7 @@
 
       <section class="section">
         <div class="section-head">
-          <h2>Lộ trình Research Track 2 năm</h2>
+          <h2>Lộ trình Research Track</h2>
           <p class="section-lead">
             Residency không phải một hoạt động ngắn hạn. Resident được kỳ vọng
             duy trì cam kết, ghi nhận tiến độ và tham gia các buổi review định
