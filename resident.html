@@ -8,6 +8,10 @@
       name="description"
       content="Chương trình NITS Research Residency kết nối sinh viên, mentor học thuật và đối tác để phát triển năng lực nghiên cứu AI."
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
     <style>
       :root {
         --ink: #101820;
@@ -366,10 +370,651 @@
         font-weight: 900;
       }
 
+      .timeline-v {
+        position: relative;
+        margin-top: 8px;
+      }
+
+      .tl-item {
+        position: relative;
+        padding: 0 0 34px 72px;
+        min-height: 50px;
+      }
+
+      .tl-item:last-child {
+        padding-bottom: 0;
+      }
+
+      .tl-item::before {
+        content: "";
+        position: absolute;
+        left: 24px;
+        top: 25px;
+        bottom: 0;
+        width: 2px;
+        background: var(--line);
+      }
+
+      .tl-item:last-child::before {
+        display: none;
+      }
+
+      .tl-node {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 50px;
+        height: 50px;
+        display: grid;
+        place-items: center;
+        background: var(--round, var(--brand));
+        color: var(--round-ink, var(--white));
+        font-size: 22px;
+        font-weight: 900;
+        z-index: 1;
+      }
+
+      .tl-eyebrow {
+        display: block;
+        color: var(--brand);
+        font-size: 14px;
+        font-weight: 800;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+      }
+
+      .tl-date {
+        margin-top: 5px;
+        color: var(--brand-2);
+        font-size: 25px;
+        font-weight: 900;
+        line-height: 1.1;
+      }
+
+      .tl-desc {
+        margin-top: 9px;
+        max-width: 720px;
+        color: var(--muted);
+        text-align: justify;
+      }
+
+      /* Màu & vị trí từng vòng (thay cho inline style) */
+      .r1 {
+        --round: #d9b450;
+        --round-ink: #0e1f3d;
+      }
+      .r2 {
+        --round: #3f6fa3;
+      }
+      .r3 {
+        --round: #b15563;
+      }
+      .r4 {
+        --round: #5a9163;
+      }
+      .r5 {
+        --round: #84588a;
+      }
+
+      .s1 {
+        left: 9.5%;
+        top: 68%;
+      }
+      .s2 {
+        left: 30%;
+        top: 27.3%;
+      }
+      .s3 {
+        left: 50%;
+        top: 68%;
+      }
+      .s4 {
+        left: 70%;
+        top: 27.3%;
+      }
+      .s5 {
+        left: 90.5%;
+        top: 68%;
+      }
+
+      /* ===== Con đường hành trình (màn rộng) ===== */
+      .journey {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1000 / 440;
+        margin-top: 12px;
+      }
+
+      .journey-road {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+      }
+
+      .ribbon {
+        fill: none;
+        stroke: url(#ribbonGrad);
+        stroke-width: 38;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .ribbon-sheen {
+        fill: none;
+        stroke: rgba(255, 255, 255, 0.4);
+        stroke-width: 6;
+        stroke-linecap: round;
+      }
+
+      .stop-ico {
+        display: block;
+        width: 26px;
+        height: 26px;
+        margin: 0 auto 5px;
+        color: var(--round, var(--brand));
+      }
+
+      .stop {
+        position: absolute;
+        width: 0;
+        height: 0;
+      }
+
+      .pin {
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform: translate(-50%, -50%);
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        background: radial-gradient(
+            circle at 50% 30%,
+            rgba(255, 255, 255, 0.55),
+            rgba(255, 255, 255, 0) 46%
+          ),
+          var(--round, var(--brand));
+        color: var(--round-ink, var(--white));
+        display: grid;
+        place-items: center;
+        font-size: 24px;
+        font-weight: 900;
+        box-shadow: 0 0 0 5px var(--paper), 0 0 0 8px var(--round, var(--brand)),
+          0 10px 22px rgba(16, 24, 32, 0.3),
+          inset 0 2px 5px rgba(255, 255, 255, 0.45);
+        z-index: 2;
+      }
+
+      .stop-label {
+        position: absolute;
+        left: 0;
+        width: 180px;
+        transform: translateX(-50%);
+        text-align: center;
+      }
+
+      .stop--up .stop-label {
+        bottom: 42px;
+      }
+
+      .stop--down .stop-label {
+        top: 42px;
+      }
+
+      .stop-name {
+        display: block;
+        color: var(--brand);
+        font-size: 13px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+      }
+
+      .stop-date {
+        display: block;
+        margin-top: 2px;
+        color: var(--brand-2);
+        font-size: 20px;
+        font-weight: 900;
+        line-height: 1.1;
+      }
+
+      .stop-note {
+        display: block;
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.4;
+      }
+
+      /* ===== Horizontal Timeline (NEW) ===== */
+      .timeline-h {
+        position: relative;
+        margin-top: 80px;
+        margin-bottom: 80px;
+      }
+
+      .timeline-axis {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: #d9d0c3;
+        transform: translateY(-50%);
+        z-index: 0;
+      }
+
+      .timeline-items {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 12px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .timeline-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* Items above the axis */
+      .timeline-item--above {
+        justify-content: flex-start;
+      }
+
+      .timeline-item--above .timeline-content {
+        order: 1;
+        margin-bottom: 24px;
+        text-align: center;
+      }
+
+      .timeline-item--above .timeline-node {
+        order: 2;
+      }
+
+      .timeline-item--above::after {
+        content: "";
+        position: absolute;
+        top: -24px;
+        width: 2px;
+        height: 24px;
+        background: var(--timeline-color, #d9b450);
+      }
+
+      /* Items below the axis */
+      .timeline-item--below {
+        justify-content: flex-end;
+      }
+
+      .timeline-item--below .timeline-node {
+        order: 1;
+      }
+
+      .timeline-item--below .timeline-content {
+        order: 2;
+        margin-top: 24px;
+        text-align: center;
+      }
+
+      .timeline-item--below::after {
+        content: "";
+        position: absolute;
+        bottom: -24px;
+        width: 2px;
+        height: 24px;
+        background: var(--timeline-color, #3f6fa3);
+      }
+
+      /* Node styling: concentric circles */
+      .timeline-node {
+        position: relative;
+        width: 70px;
+        height: 70px;
+        display: grid;
+        place-items: center;
+      }
+
+      .timeline-node::before {
+        content: "";
+        position: absolute;
+        width: 70px;
+        height: 70px;
+        border: 2px solid var(--timeline-color, #d9b450);
+        border-radius: 50%;
+        opacity: 0.3;
+      }
+
+      .timeline-node::after {
+        content: "";
+        position: absolute;
+        width: 52px;
+        height: 52px;
+        border: 2px solid var(--timeline-color, #d9b450);
+        border-radius: 50%;
+        opacity: 0.6;
+      }
+
+      .timeline-node-core {
+        position: relative;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--timeline-color, #d9b450);
+        color: var(--white);
+        display: grid;
+        place-items: center;
+        font-weight: 900;
+        font-size: 18px;
+        box-shadow: 0 4px 12px rgba(16, 24, 32, 0.15);
+      }
+
+      /* Color variables for each stage */
+      .r1 { --timeline-color: #d9b450; }
+      .r2 { --timeline-color: #3f6fa3; }
+      .r3 { --timeline-color: #b15563; }
+      .r4 { --timeline-color: #5a9163; }
+      .r5 { --timeline-color: #84588a; }
+
+      /* Content text styling */
+      .timeline-heading {
+        margin-bottom: 8px;
+      }
+
+      .timeline-number {
+        display: block;
+        color: var(--timeline-color, #d9b450);
+        font-size: 12px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+      }
+
+      .timeline-title {
+        display: block;
+        color: var(--brand-2);
+        font-size: 18px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+
+      .timeline-date {
+        color: var(--brand-2);
+        font-size: 16px;
+        font-weight: 700;
+        margin-top: 6px;
+      }
+
+      .timeline-desc {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.4;
+        margin-top: 4px;
+        max-width: 140px;
+      }
+
+      .timeline-v {
+        display: none;
+      }
+
+      @media (max-width: 1024px) {
+        .timeline-items {
+          gap: 8px;
+        }
+
+        .timeline-item--above::after,
+        .timeline-item--below::after {
+          height: 18px;
+        }
+
+        .timeline-node {
+          width: 60px;
+          height: 60px;
+        }
+
+        .timeline-node::before {
+          width: 60px;
+          height: 60px;
+        }
+
+        .timeline-node::after {
+          width: 44px;
+          height: 44px;
+        }
+
+        .timeline-node-core {
+          width: 34px;
+          height: 34px;
+          font-size: 16px;
+        }
+
+        .timeline-title {
+          font-size: 16px;
+        }
+
+        .timeline-date {
+          font-size: 14px;
+        }
+
+        .timeline-desc {
+          font-size: 12px;
+          max-width: 120px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .timeline-h {
+          display: none;
+        }
+
+        .timeline-v {
+          display: block;
+        }
+      }
+
       .roles {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 18px;
+      }
+
+      .mentor-wrap {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.78));
+        border: 1px solid var(--line);
+        padding: 28px;
+        position: relative;
+      }
+
+      .mentor-swiper {
+        overflow: hidden;
+      }
+
+      .mentor-card {
+        position: relative;
+        min-height: 410px;
+        background: var(--white);
+        border: 1px solid rgba(217, 208, 195, 0.95);
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+      }
+
+      .mentor-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 36px rgba(14, 31, 61, 0.16);
+        border-color: rgba(14, 31, 61, 0.25);
+      }
+
+      .mentor-photo {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        background: linear-gradient(135deg, #d9d0c3 0%, #f0ebe2 100%);
+      }
+
+      .mentor-base {
+        padding: 18px 18px 20px;
+      }
+
+      .mentor-name {
+        margin: 0;
+        color: var(--brand-2);
+        font-size: 21px;
+        line-height: 1.2;
+      }
+
+      .mentor-title {
+        margin-top: 8px;
+        color: var(--brand);
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      .mentor-org,
+      .mentor-country {
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .mentor-overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        gap: 10px;
+        padding: 22px;
+        background: linear-gradient(
+          180deg,
+          rgba(14, 31, 61, 0.03) 0%,
+          rgba(14, 31, 61, 0.86) 54%,
+          rgba(14, 31, 61, 0.96) 100%
+        );
+        color: var(--white);
+        opacity: 0;
+        transform: translateY(8px);
+        transition: opacity 0.35s ease, transform 0.35s ease;
+      }
+
+      .mentor-card:hover .mentor-overlay,
+      .mentor-card:focus-within .mentor-overlay {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .mentor-overlay h3 {
+        margin: 0;
+        color: #f5d6a2;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+      }
+
+      .mentor-overlay p {
+        font-size: 14px;
+        line-height: 1.55;
+      }
+
+      .mentor-controls {
+        margin-top: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+      }
+
+      .mentor-nav {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .mentor-btn {
+        min-width: 44px;
+        height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(14, 31, 61, 0.25);
+        background: var(--white);
+        color: var(--brand-2);
+        font-size: 18px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .mentor-btn:hover {
+        border-color: var(--brand-2);
+        background: var(--brand-2);
+        color: var(--white);
+        transform: translateY(-1px);
+      }
+
+      /* Side overlay navigation buttons */
+      .mentor-side {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.78);
+        -webkit-backdrop-filter: blur(6px);
+        backdrop-filter: blur(6px);
+        color: var(--brand-2);
+        border: 1px solid rgba(16,24,32,0.06);
+        display: grid;
+        place-items: center;
+        font-size: 20px;
+        opacity: 0.12;
+        pointer-events: none;
+        box-shadow: 0 8px 20px rgba(16,24,32,0.10);
+        transition: opacity 220ms ease, transform 220ms ease, background 220ms ease;
+        z-index: 6;
+      }
+
+      .mentor-side.mentor-prev {
+        left: -28px;
+      }
+
+      .mentor-side.mentor-next {
+        right: -28px;
+      }
+
+      .mentor-wrap:hover .mentor-side,
+      .mentor-wrap:focus-within .mentor-side {
+        opacity: 1;
+        pointer-events: auto;
+        background: rgba(255,255,255,0.98);
+        color: var(--brand-2);
+        transform: translateY(-50%) scale(1.05);
+      }
+
+      /* Hide side buttons on small screens (keep swipe enabled) */
+      @media (max-width: 800px) {
+        .mentor-side { display: none; }
+      }
+
+      .mentor-pagination {
+        display: inline-flex;
+        width: auto;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .mentor-pagination .swiper-pagination-bullet {
+        width: 10px;
+        height: 10px;
+        opacity: 1;
+        background: rgba(14, 31, 61, 0.25);
+      }
+
+      .mentor-pagination .swiper-pagination-bullet-active {
+        background: var(--brand);
       }
 
       .role {
@@ -402,6 +1047,73 @@
       .cta p {
         max-width: 760px;
         margin-top: 14px;
+      }
+
+      .cta-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        align-items: center;
+        margin-top: 28px;
+      }
+
+      .button {
+        transition: all 0.3s ease;
+        border-radius: 4px;
+        font-size: 15px;
+        min-height: 50px;
+        padding: 12px 22px;
+        letter-spacing: 0.2px;
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(16, 24, 32, 0.15);
+      }
+
+      .button.primary {
+        background: var(--brand);
+        border-color: var(--brand);
+        color: var(--white);
+      }
+
+      .button.primary:hover {
+        background: #8d1c1c;
+        border-color: #8d1c1c;
+      }
+
+      .cta-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 50px;
+        padding: 12px 22px;
+        border: 1px solid rgba(255, 255, 255, 0.65);
+        border-radius: 4px;
+        color: var(--white);
+        font-size: 15px;
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: 0.2px;
+        transition: all 0.3s ease;
+      }
+
+      .cta-link::before {
+        content: "\2190";
+        font-size: 16px;
+        line-height: 1;
+      }
+
+      .cta-link:hover {
+        transform: translateY(-2px);
+        background: rgba(255, 255, 255, 0.14);
+        border-color: var(--white);
+        box-shadow: 0 8px 20px rgba(16, 24, 32, 0.15);
+      }
+
+      .button.secondary:hover {
+        background: rgba(255, 255, 255, 0.1);
       }
 
       .footer {
@@ -444,6 +1156,21 @@
         .cta-box {
           grid-template-columns: 1fr;
         }
+
+        .cta-actions {
+          flex-direction: column;
+          width: 100%;
+        }
+
+        .cta-actions .button,
+        .cta-actions .cta-link {
+          width: 100%;
+        }
+
+        .mentor-controls {
+          align-items: flex-start;
+          flex-direction: column;
+        }
       }
 
       @media (max-width: 620px) {
@@ -466,6 +1193,16 @@
           padding: 56px 0 72px;
         }
 
+        .cta-actions {
+          flex-direction: column;
+          width: 100%;
+        }
+
+        .cta-actions .button,
+        .cta-actions .cta-link {
+          width: 100%;
+        }
+
         .hero-stats,
         .cards,
         .steps,
@@ -473,9 +1210,36 @@
           grid-template-columns: 1fr;
         }
 
+        .mentor-wrap {
+          padding: 18px;
+        }
+
+        .mentor-card {
+          min-height: 390px;
+        }
+
         .timeline {
           grid-template-columns: 1fr;
           gap: 8px;
+        }
+
+        .tl-item {
+          padding: 0 0 28px 58px;
+        }
+
+        .tl-item::before {
+          left: 19px;
+          top: 20px;
+        }
+
+        .tl-node {
+          width: 40px;
+          height: 40px;
+          font-size: 18px;
+        }
+
+        .tl-date {
+          font-size: 21px;
         }
 
         .track {
@@ -498,6 +1262,7 @@
         <div class="nav-links">
           <a href="#overview">Tổng quan</a>
           <a href="#tracks">Lộ trình</a>
+          <a href="#mentors">Mentor</a>
           <a href="#selection">Tuyển chọn</a>
           <a href="#partners">Đối tác</a>
           <a href="#contact">Liên hệ</a>
@@ -509,7 +1274,7 @@
       <section class="hero">
         <div class="hero-inner">
           <span class="eyebrow">Research Residency Programme</span>
-          <h1>Không gian tăng tốc cho sinh viên muốn làm nghiên cứu AI nghiêm túc.</h1>
+          <h1>Ươm tạo tài năng, kiến tạo nhà nghiên cứu tương lai</h1>
           <p class="hero-copy">
             NITS Research Residency kết nối sinh viên tài năng với mentor nghiên
             cứu, đối tác công nghiệp và các nhóm học thuật để biến năng lực học
@@ -526,7 +1291,7 @@
               <span>Research Track chuyên sâu</span>
             </div>
             <div class="stat">
-              <strong>5 bước</strong>
+              <strong>5 vòng</strong>
               <span>Quy trình tuyển chọn có đánh giá rõ ràng</span>
             </div>
             <div class="stat">
@@ -577,7 +1342,7 @@
 
       <section class="section" id="tracks">
         <div class="section-head">
-          <h2>Research Track cho hành trình nghiên cứu dài hạn</h2>
+          <h2>Research Track</h2>
           <p class="section-lead">
             Residency tập trung vào Research Track, một lộ trình khoảng 2 năm
             dành cho sinh viên muốn phát triển năng lực nghiên cứu độc lập, làm
@@ -587,7 +1352,6 @@
         <div class="tracks">
           <article class="track">
             <div>
-              <h3>Research Track</h3>
               <p>
                 Lộ trình khoảng 2 năm dành cho resident muốn phát triển năng lực
                 nghiên cứu độc lập trong AI, machine learning, language models,
@@ -603,43 +1367,193 @@
         </div>
       </section>
 
-      <section class="section" id="selection">
+      <section class="section" id="mentors">
         <div class="section-head">
-          <h2>Quy trình tuyển chọn 5 bước</h2>
+          <h2>Đội ngũ Mentor &amp; Chuyên gia</h2>
           <p class="section-lead">
-            Chương trình ưu tiên những ứng viên có nền tảng tốt, tinh thần tự
-            học, khả năng đi đường dài và sự nghiêm túc với nghiên cứu. Quy trình
-            tuyển chọn được chia thành các bước giúp đánh giá cả năng lực kỹ
-            thuật lẫn độ phù hợp.
+            Đội ngũ mentor và chuyên gia đồng hành cùng Resident đến từ các
+            viện nghiên cứu, đại học và phòng lab công nghiệp quốc tế, mang lại
+            góc nhìn học thuật sâu và năng lực triển khai thực tiễn.
           </p>
         </div>
-        <div class="steps">
-          <article class="step">
-            <h3>Hồ sơ</h3>
-            <p>CV, bảng điểm, dự án đã làm và một đoạn ngắn về hướng quan tâm.</p>
-          </article>
-          <article class="step">
-            <h3>Đánh giá nền tảng</h3>
-            <p>Kiểm tra kiến thức lập trình, toán, machine learning hoặc NLP/CV.</p>
-          </article>
-          <article class="step">
-            <h3>Mini task</h3>
-            <p>Bài tập nhỏ để quan sát cách đọc tài liệu, thực nghiệm và báo cáo.</p>
-          </article>
-          <article class="step">
-            <h3>Phỏng vấn</h3>
-            <p>Trao đổi với mentor về mục tiêu, thời gian cam kết và văn hóa làm việc.</p>
-          </article>
-          <article class="step">
-            <h3>Onboarding</h3>
-            <p>Chốt đề tài khởi động, cadence review và kỳ vọng đầu ra.</p>
-          </article>
+        <div class="mentor-wrap">
+          <div class="swiper mentor-swiper" id="mentor-swiper">
+            <div class="swiper-wrapper" id="mentor-slides"></div>
+          </div>
+          <!-- Side overlay navigation (hidden by default, fade in on hover) -->
+          <button class="mentor-side mentor-prev" type="button" aria-label="Mentor trước đó">
+            <svg width="20" height="32" viewBox="0 0 20 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M17 2L3 16L17 30" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button class="mentor-side mentor-next" type="button" aria-label="Mentor tiếp theo">
+            <svg width="20" height="32" viewBox="0 0 20 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M3 2L17 16L3 30" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="mentor-controls">
+            <div class="swiper-pagination mentor-pagination"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="selection">
+        <div class="section-head">
+          <h2>Quy trình tuyển chọn</h2>
+          <p class="section-lead">
+            Quá trình tuyển chọn gồm 5 vòng, diễn ra từ đầu tháng 7 đến đầu
+            tháng 9. Dưới đây là những mốc thời gian quan trọng mà ứng viên cần
+            lưu ý ở mỗi vòng.
+          </p>
+        </div>
+        <div class="timeline-h">
+          <!-- Horizontal axis line -->
+          <div class="timeline-axis"></div>
+          
+          <!-- Timeline items in horizontal layout -->
+          <div class="timeline-items">
+            <!-- Item 1 (above) -->
+            <div class="timeline-item timeline-item--above r1">
+              <div class="timeline-content">
+                <div class="timeline-heading">
+                  <span class="timeline-number">Vòng 1</span>
+                  <span class="timeline-title">CV</span>
+                </div>
+                <div class="timeline-date">05/07 – 20/07</div>
+                <div class="timeline-desc">Nộp hồ sơ đăng ký</div>
+              </div>
+              <div class="timeline-node">
+                <div class="timeline-node-core">1</div>
+              </div>
+            </div>
+
+            <!-- Item 2 (below) -->
+            <div class="timeline-item timeline-item--below r2">
+              <div class="timeline-node">
+                <div class="timeline-node-core">2</div>
+              </div>
+              <div class="timeline-content">
+                <div class="timeline-heading">
+                  <span class="timeline-number">Vòng 2</span>
+                  <span class="timeline-title">Entrance test</span>
+                </div>
+                <div class="timeline-date">29/07</div>
+                <div class="timeline-desc">Thi đầu vào (1 ngày)</div>
+              </div>
+            </div>
+
+            <!-- Item 3 (above) -->
+            <div class="timeline-item timeline-item--above r3">
+              <div class="timeline-content">
+                <div class="timeline-heading">
+                  <span class="timeline-number">Vòng 3</span>
+                  <span class="timeline-title">Coding contest</span>
+                </div>
+                <div class="timeline-date">05/08</div>
+                <div class="timeline-desc">Thi lập trình</div>
+              </div>
+              <div class="timeline-node">
+                <div class="timeline-node-core">3</div>
+              </div>
+            </div>
+
+            <!-- Item 4 (below) -->
+            <div class="timeline-item timeline-item--below r4">
+              <div class="timeline-node">
+                <div class="timeline-node-core">4</div>
+              </div>
+              <div class="timeline-content">
+                <div class="timeline-heading">
+                  <span class="timeline-number">Vòng 4</span>
+                  <span class="timeline-title">Video presentation</span>
+                </div>
+                <div class="timeline-date">08/08 – 19/08</div>
+                <div class="timeline-desc">Nhận paper &amp; thuyết trình</div>
+              </div>
+            </div>
+
+            <!-- Item 5 (above) -->
+            <div class="timeline-item timeline-item--above r5">
+              <div class="timeline-content">
+                <div class="timeline-heading">
+                  <span class="timeline-number">Vòng 5</span>
+                  <span class="timeline-title">Matching</span>
+                </div>
+                <div class="timeline-date">23/08 – 05/09</div>
+                <div class="timeline-desc">Ghép mentor &amp; kết quả</div>
+              </div>
+              <div class="timeline-node">
+                <div class="timeline-node-core">5</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-v">
+          <div class="tl-item r1">
+            <span class="tl-node">1</span>
+            <div class="tl-content">
+              <span class="tl-eyebrow">Vòng 1 · CV</span>
+              <div class="tl-date">05/07 – 20/07</div>
+              <p class="tl-desc">
+                Nộp hồ sơ đăng ký (CV, bảng điểm, portfolio). Công bố kết quả
+                và mở đăng ký ca thi đầu vào ngày 25/07.
+              </p>
+            </div>
+          </div>
+
+          <div class="tl-item r2">
+            <span class="tl-node">2</span>
+            <div class="tl-content">
+              <span class="tl-eyebrow">Vòng 2 · Entrance test</span>
+              <div class="tl-date">29/07</div>
+              <p class="tl-desc">
+                Thi kiểm tra đầu vào trong 1 ngày. Kết quả công bố ngày 31/07.
+              </p>
+            </div>
+          </div>
+
+          <div class="tl-item r3">
+            <span class="tl-node">3</span>
+            <div class="tl-content">
+              <span class="tl-eyebrow">Vòng 3 · Coding contest</span>
+              <div class="tl-date">05/08</div>
+              <p class="tl-desc">
+                Thi lập trình tính giờ. Kết quả và danh sách bài báo cần tìm
+                hiểu công bố ngày 08/08.
+              </p>
+            </div>
+          </div>
+
+          <div class="tl-item r4">
+            <span class="tl-node">4</span>
+            <div class="tl-content">
+              <span class="tl-eyebrow">Vòng 4 · Video presentation</span>
+              <div class="tl-date">08/08 – 19/08</div>
+              <p class="tl-desc">
+                Nhận paper, dành thời gian tìm hiểu và thuyết trình. Kết quả
+                công bố ngày 22/08.
+              </p>
+            </div>
+          </div>
+
+          <div class="tl-item r5">
+            <span class="tl-node">5</span>
+            <div class="tl-content">
+              <span class="tl-eyebrow">Vòng 5 · Matching</span>
+              <div class="tl-date">23/08 – 05/09</div>
+              <p class="tl-desc">
+                Gửi CV cho mentor, phỏng vấn online và ghép mentor. Kết quả
+                chính thức công bố ngày 05/09.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
       <section class="section">
         <div class="section-head">
-          <h2>Lộ trình Research Track trong 2 năm</h2>
+          <h2>Lộ trình Research Track 2 năm</h2>
           <p class="section-lead">
             Residency không phải một hoạt động ngắn hạn. Resident được kỳ vọng
             duy trì cam kết, ghi nhận tiến độ và tham gia các buổi review định
@@ -652,8 +1566,7 @@
             <div>
               <h3>Nền tảng và định vị bài toán</h3>
               <p>
-                Đọc paper cốt lõi, tái lập baseline, hiểu dữ liệu và xác định
-                khoảng trống nghiên cứu phù hợp với năng lực của resident.
+                Tìm hiểu bài báo cốt lõi, tái lập kết quả, xác định khoảng trống nghiên cứu.
               </p>
             </div>
           </article>
@@ -662,7 +1575,7 @@
             <div>
               <h3>Thực nghiệm và mở rộng</h3>
               <p>
-                Xây dựng phương pháp, benchmark, pipeline đánh giá, phân tích
+                Xây dựng phương pháp, quy trình đánh giá, phân tích
                 lỗi và so sánh có hệ thống với các hướng tiếp cận liên quan.
               </p>
             </div>
@@ -672,8 +1585,7 @@
             <div>
               <h3>Viết, công bố và chuyển giao</h3>
               <p>
-                Hoàn thiện báo cáo kỹ thuật, paper, code hoặc prototype; trình
-                bày kết quả với lab, mentor và các đối tác liên quan.
+                Hoàn thiện bài báo, công bố bài báo tại các hội nghị, tạp chí uy tín.
               </p>
             </div>
           </article>
@@ -721,12 +1633,13 @@
             <div>
               <h2>Sẵn sàng cùng NITS Lab xây dựng thế hệ resident tiếp theo?</h2>
               <p>
-                Sinh viên, mentor và đối tác quan tâm có thể bắt đầu bằng một
-                buổi trao đổi ngắn về mục tiêu, năng lực hiện tại và hướng hợp
-                tác phù hợp.
+                Nếu bạn quan tâm đến chương trình Resident của NITS Lab, hãy đăng ký để chúng tôi có thể kết nối và trao đổi thêm về mục tiêu, định hướng nghiên cứu cũng như cơ hội hợp tác phù hợp.
               </p>
+              <div class="cta-actions">
+                <a class="button primary" href="#register-form" data-form-link="">Đăng ký ngay</a>
+                <a class="cta-link" href="index.html">Quay về NITS Lab</a>
+              </div>
             </div>
-            <a class="button" href="index.html">Quay về NITS Lab</a>
           </div>
         </div>
       </section>
@@ -737,5 +1650,112 @@
         &copy; 2026 NITS Lab. 
       </p>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+      const mentorsData = [
+        {
+          name: "Prof. Truyen Tran",
+          title: "Associate Professor",
+          organization: "Deakin University, AI2",
+          country: "Australia",
+          photo: "assest/image/nits.png",
+          research: "Machine Learning, Probabilistic Deep Learning, Temporal & Sequential Modelling, AI for Health",
+          role: "Mentor",
+          bio: ""
+        },
+        {
+          name: "Asst. Prof. Hung Le",
+          title: "Assistant Professor",
+          organization: "Deakin University, AI2",
+          country: "Australia",
+          photo: "assest/image/nits.png",
+          research: "Deep Learning, Natural Language Processing, Large Language Models, Reasoning Systems",
+          role: "Mentor",
+          bio: ""
+        },
+        {
+          name: "Asst. Prof. Thai Hoang Pham",
+          title: "Assistant Professor",
+          organization: "Texas State University",
+          country: "USA",
+          photo: "assest/image/nits.png",
+          research: "Natural Language Processing, Information Extraction, Question Answering, Clinical NLP",
+          role: "Mentor",
+          bio: ""
+        },
+        {
+          name: "Asst. Prof. Hoang Trong Nghia",
+          title: "Assistant Professor",
+          organization: "Washington State University",
+          country: "USA",
+          photo: "assest/image/nits.png",
+          research: "Network Security, AI for Cybersecurity, Adversarial Machine Learning, Privacy-Preserving ML",
+          role: "Mentor",
+          bio: ""
+        },
+        {
+          name: "Dr. Viet Lai",
+          title: "Senior Research Scientist",
+          organization: "Adobe Research",
+          country: "USA",
+          photo: "assest/image/nits.png",
+          research: "Natural Language Processing, Multimodal AI, Vision-Language Models, Document Understanding",
+          role: "Mentor",
+          bio: ""
+        }
+      ];
+
+      const mentorSlides = document.getElementById("mentor-slides");
+
+      if (mentorSlides) {
+        mentorsData.forEach((mentor) => {
+          const slide = document.createElement("div");
+          slide.className = "swiper-slide";
+          slide.innerHTML = `
+            <article class="mentor-card" tabindex="0" aria-label="${mentor.name}">
+              <img class="mentor-photo" src="${mentor.photo}" alt="${mentor.name}" loading="lazy" />
+              <div class="mentor-base">
+                <h3 class="mentor-name">${mentor.name}</h3>
+                <p class="mentor-title">${mentor.title}</p>
+                <p class="mentor-org">${mentor.organization}</p>
+                <p class="mentor-country">${mentor.country}</p>
+              </div>
+              <div class="mentor-overlay">
+                <h3>Lĩnh vực nghiên cứu</h3>
+                <p>${mentor.research}</p>
+                <h3>Vai trò trong chương trình</h3>
+                <p>${mentor.role}</p>
+                <h3>Mô tả ngắn</h3>
+                <p>${mentor.bio}</p>
+              </div>
+            </article>
+          `;
+          mentorSlides.appendChild(slide);
+        });
+
+        new Swiper("#mentor-swiper", {
+          spaceBetween: 18,
+          slidesPerView: 1,
+          speed: 650,
+          grabCursor: true,
+          navigation: {
+            nextEl: ".mentor-next",
+            prevEl: ".mentor-prev"
+          },
+          pagination: {
+            el: ".mentor-pagination",
+            clickable: true
+          },
+          breakpoints: {
+            640: {
+              slidesPerView: 2
+            },
+            1024: {
+              slidesPerView: 4
+            }
+          }
+        });
+      }
+    </script>
   </body>
 </html>
