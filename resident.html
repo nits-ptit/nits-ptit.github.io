@@ -123,11 +123,9 @@
         content: "";
         position: absolute;
         inset: 0;
-        background-image: url("assest/image/nits.png");
-        background-repeat: no-repeat;
-        background-position: right 7vw center;
-        background-size: min(42vw, 520px);
-        opacity: 0.08;
+        background:
+          linear-gradient(90deg, rgba(251, 250, 247, 0) 0%, rgba(240, 235, 226, 0.82) 100%);
+        opacity: 0.8;
         pointer-events: none;
       }
 
@@ -145,7 +143,16 @@
         position: relative;
         width: min(1180px, calc(100% - 40px));
         margin: 0 auto;
-        padding: 72px 0 96px;
+        padding: 64px 0 82px;
+        display: grid;
+        grid-template-columns: minmax(0, 0.95fr) minmax(380px, 0.72fr);
+        gap: 48px;
+        align-items: center;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
       }
 
       .eyebrow {
@@ -166,26 +173,26 @@
         background: var(--brand);
       }
 
-      h1 {
-        max-width: 860px;
-        margin: 18px 0 22px;
+      .hero h1 {
+        max-width: 640px;
+        margin: 18px 0 24px;
         color: var(--brand-2);
-        font-size: clamp(46px, 7vw, 86px);
-        line-height: 0.98;
+        font-size: clamp(38px, 4.6vw, 62px);
+        line-height: 1.02;
         letter-spacing: 0;
       }
 
       .hero-copy {
-        max-width: 760px;
+        max-width: 660px;
         color: #303846;
-        font-size: clamp(19px, 2.2vw, 25px);
+        font-size: clamp(18px, 1.95vw, 23px);
       }
 
       .hero-actions {
         display: flex;
         flex-wrap: wrap;
         gap: 14px;
-        margin-top: 34px;
+        margin-top: 30px;
       }
 
       .button {
@@ -207,17 +214,66 @@
 
       .hero-stats {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: 1fr;
         gap: 1px;
-        max-width: 920px;
-        margin-top: 54px;
+        max-width: none;
+        margin-top: 26px;
         background: var(--line);
         border: 1px solid var(--line);
       }
 
+      .hero-visual {
+        position: relative;
+        min-height: 430px;
+        display: grid;
+        align-content: start;
+        padding: 38px 34px;
+        border: 1px solid rgba(217, 208, 195, 0.92);
+        background: rgba(255, 255, 255, 0.58);
+        overflow: hidden;
+      }
+
+      .hero-visual::before {
+        content: "";
+        position: absolute;
+        inset: 38px 20px auto auto;
+        width: min(84%, 360px);
+        aspect-ratio: 1;
+        background: url("assest/image/nits.png") center / contain no-repeat;
+        opacity: 0.1;
+      }
+
+      .hero-visual::after {
+        content: "";
+        position: absolute;
+        left: 36px;
+        right: 36px;
+        bottom: 34px;
+        height: 1px;
+        background: var(--line);
+      }
+
+      .hero-visual-title {
+        position: relative;
+        max-width: 360px;
+        color: var(--brand-2);
+        font-size: clamp(25px, 2.3vw, 31px);
+        font-weight: 900;
+        line-height: 1.15;
+      }
+
+      .hero-visual-kicker {
+        position: relative;
+        margin-bottom: 8px;
+        color: var(--brand);
+        font-size: 14px;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+
       .stat {
         background: rgba(255, 255, 255, 0.78);
-        padding: 20px;
+        padding: 18px 22px;
       }
 
       .stat strong {
@@ -236,7 +292,7 @@
       .section {
         width: min(1180px, calc(100% - 40px));
         margin: 0 auto;
-        padding: 84px 0;
+        padding: 72px 0;
       }
 
       .section-head {
@@ -592,8 +648,7 @@
       /* ===== Horizontal Timeline (NEW) ===== */
       .timeline-h {
         position: relative;
-        margin-top: 80px;
-        margin-bottom: 80px;
+        margin: 44px 0 0;
       }
 
       .timeline-axis {
@@ -610,72 +665,73 @@
       .timeline-items {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
-        gap: 12px;
+        gap: 0;
+        min-height: 300px;
         position: relative;
         z-index: 1;
       }
 
       .timeline-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        position: relative;
+        min-height: 300px;
       }
 
-      /* Items above the axis */
-      .timeline-item--above {
-        justify-content: flex-start;
-      }
-
-      .timeline-item--above .timeline-content {
-        order: 1;
-        margin-bottom: 24px;
+      .timeline-content {
+        position: absolute;
+        left: 50%;
+        width: min(190px, calc(100% - 12px));
+        transform: translateX(-50%);
         text-align: center;
       }
 
-      .timeline-item--above .timeline-node {
-        order: 2;
+      .timeline-item--above .timeline-content {
+        bottom: calc(50% + 22px);
       }
 
       .timeline-item--above::after {
         content: "";
         position: absolute;
-        top: -24px;
+        left: 50%;
+        top: calc(50% - 22px);
+        transform: translateX(-50%);
         width: 2px;
-        height: 24px;
+        height: 22px;
         background: var(--timeline-color, #d9b450);
       }
 
-      /* Items below the axis */
-      .timeline-item--below {
-        justify-content: flex-end;
+      .timeline-item--above .timeline-node {
+        top: calc(50% + 34px);
       }
 
       .timeline-item--below .timeline-node {
-        order: 1;
+        bottom: calc(50% + 34px);
       }
 
       .timeline-item--below .timeline-content {
-        order: 2;
-        margin-top: 24px;
-        text-align: center;
+        top: calc(50% + 22px);
       }
 
       .timeline-item--below::after {
         content: "";
         position: absolute;
-        bottom: -24px;
+        left: 50%;
+        top: 50%;
+        transform: translateX(-50%);
         width: 2px;
-        height: 24px;
+        height: 22px;
         background: var(--timeline-color, #3f6fa3);
       }
 
       /* Node styling: concentric circles */
       .timeline-node {
-        position: relative;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
         width: 70px;
         height: 70px;
         display: grid;
         place-items: center;
+        z-index: 2;
       }
 
       .timeline-node::before {
@@ -753,7 +809,9 @@
         font-size: 13px;
         line-height: 1.4;
         margin-top: 4px;
-        max-width: 140px;
+        max-width: 170px;
+        margin-left: auto;
+        margin-right: auto;
       }
 
       .timeline-v {
@@ -762,12 +820,25 @@
 
       @media (max-width: 1024px) {
         .timeline-items {
-          gap: 8px;
+          gap: 0;
+          min-height: 280px;
+        }
+
+        .timeline-item {
+          min-height: 280px;
         }
 
         .timeline-item--above::after,
         .timeline-item--below::after {
           height: 18px;
+        }
+
+        .timeline-item--above .timeline-node {
+          top: calc(50% + 30px);
+        }
+
+        .timeline-item--below .timeline-node {
+          bottom: calc(50% + 30px);
         }
 
         .timeline-node {
@@ -852,7 +923,20 @@
         width: 100%;
         aspect-ratio: 4 / 3;
         object-fit: cover;
+        object-position: center center;
         background: linear-gradient(135deg, #d9d0c3 0%, #f0ebe2 100%);
+      }
+
+      .mentor-photo--1 {
+        object-position: center 24%;
+      }
+
+      .mentor-photo--3 {
+        object-position: center 30%;
+      }
+
+      .mentor-photo--4 {
+        object-position: center 28%;
       }
 
       .mentor-base {
@@ -1139,12 +1223,22 @@
           min-height: auto;
         }
 
-        .hero::before {
-          background-position: right -80px top 40px;
-          background-size: 360px;
+        .hero-inner {
+          grid-template-columns: 1fr;
+          gap: 32px;
         }
 
-        .hero-stats,
+        .hero-visual {
+          min-height: auto;
+          padding: 28px;
+          max-width: 680px;
+        }
+
+        .hero-visual::before {
+          width: 260px;
+          opacity: 0.1;
+        }
+
         .cards,
         .steps,
         .roles {
@@ -1185,12 +1279,24 @@
           width: min(100% - 28px, 1180px);
         }
 
+        .section {
+          padding: 56px 0;
+        }
+
         .nav-links {
           gap: 10px 14px;
         }
 
         .hero-inner {
-          padding: 56px 0 72px;
+          padding: 50px 0 64px;
+        }
+
+        .hero-visual {
+          padding: 24px;
+        }
+
+        .hero-visual-title {
+          font-size: 23px;
         }
 
         .cta-actions {
@@ -1203,7 +1309,6 @@
           width: 100%;
         }
 
-        .hero-stats,
         .cards,
         .steps,
         .roles {
@@ -1273,6 +1378,7 @@
     <main>
       <section class="hero">
         <div class="hero-inner">
+<<<<<<< HEAD
           <span class="eyebrow">Research Residency Programme</span>
           <h1>Ươm tạo tài năng, kiến tạo nhà nghiên cứu tương lai</h1>
           <p class="hero-copy">
@@ -1297,8 +1403,40 @@
             <div class="stat">
               <strong>3 bên</strong>
               <span>Resident, mentor và đối tác đồng hành</span>
+=======
+          <div class="hero-content">
+            <span class="eyebrow">Research Residency Programme</span>
+            <h1>Where Talent Grows into Research Excellence</h1>
+            <p class="hero-copy">
+              NITS Research Residency kết nối sinh viên tài năng với mentor nghiên
+              cứu, đối tác công nghiệp và các nhóm học thuật để biến năng lực học
+              thuật thành sản phẩm nghiên cứu có chuẩn mực, có lộ trình và có tác
+              động thực tế.
+            </p>
+            <div class="hero-actions">
+              <a class="button" href="#selection">Xem quy trình tham gia</a>
+              <!-- <a class="button secondary" href="#partners">Dành cho đối tác</a> -->
+>>>>>>> 74c40b6cecf7d0ea88060458220cd48dd5e4331f
             </div>
           </div>
+          <aside class="hero-visual" aria-label="Điểm nổi bật của chương trình">
+            <div class="hero-visual-kicker">NITS Lab</div>
+            <div class="hero-visual-title">Research Track chuyên sâu cho sinh viên AI</div>
+            <div class="hero-stats">
+              <div class="stat">
+                <strong>2 năm</strong>
+                <span>Research Track chuyên sâu</span>
+              </div>
+              <div class="stat">
+                <strong>5 vòng</strong>
+                <span>Quy trình tuyển chọn có đánh giá rõ ràng</span>
+              </div>
+              <div class="stat">
+                <strong>3 bên</strong>
+                <span>Resident, mentor và đối tác đồng hành</span>
+              </div>
+            </div>
+          </aside>
         </div>
       </section>
 
@@ -1438,7 +1576,7 @@
                   <span class="timeline-title">Entrance test</span>
                 </div>
                 <div class="timeline-date">29/07</div>
-                <div class="timeline-desc">Thi đầu vào (1 ngày)</div>
+                <div class="timeline-desc">Thi đầu vào </div>
               </div>
             </div>
 
@@ -1496,8 +1634,7 @@
               <span class="tl-eyebrow">Vòng 1 · CV</span>
               <div class="tl-date">05/07 – 20/07</div>
               <p class="tl-desc">
-                Nộp hồ sơ đăng ký (CV, bảng điểm, portfolio). Công bố kết quả
-                và mở đăng ký ca thi đầu vào ngày 25/07.
+                Nộp hồ sơ đăng ký.
               </p>
             </div>
           </div>
@@ -1508,7 +1645,7 @@
               <span class="tl-eyebrow">Vòng 2 · Entrance test</span>
               <div class="tl-date">29/07</div>
               <p class="tl-desc">
-                Thi kiểm tra đầu vào trong 1 ngày. Kết quả công bố ngày 31/07.
+                Thi đầu vào trong 1 ngày.
               </p>
             </div>
           </div>
@@ -1519,8 +1656,7 @@
               <span class="tl-eyebrow">Vòng 3 · Coding contest</span>
               <div class="tl-date">05/08</div>
               <p class="tl-desc">
-                Thi lập trình tính giờ. Kết quả và danh sách bài báo cần tìm
-                hiểu công bố ngày 08/08.
+                Thi lập trình.
               </p>
             </div>
           </div>
@@ -1531,8 +1667,7 @@
               <span class="tl-eyebrow">Vòng 4 · Video presentation</span>
               <div class="tl-date">08/08 – 19/08</div>
               <p class="tl-desc">
-                Nhận paper, dành thời gian tìm hiểu và thuyết trình. Kết quả
-                công bố ngày 22/08.
+                Nhận paper và thuyết trình.
               </p>
             </div>
           </div>
@@ -1543,8 +1678,7 @@
               <span class="tl-eyebrow">Vòng 5 · Matching</span>
               <div class="tl-date">23/08 – 05/09</div>
               <p class="tl-desc">
-                Gửi CV cho mentor, phỏng vấn online và ghép mentor. Kết quả
-                chính thức công bố ngày 05/09.
+                Ghép mentor và công bố kết quả.
               </p>
             </div>
           </div>
@@ -1553,7 +1687,7 @@
 
       <section class="section">
         <div class="section-head">
-          <h2>Lộ trình Research Track 2 năm</h2>
+          <h2>Lộ trình Research Track</h2>
           <p class="section-lead">
             Residency không phải một hoạt động ngắn hạn. Resident được kỳ vọng
             duy trì cam kết, ghi nhận tiến độ và tham gia các buổi review định
@@ -1708,12 +1842,12 @@
       const mentorSlides = document.getElementById("mentor-slides");
 
       if (mentorSlides) {
-        mentorsData.forEach((mentor) => {
+        mentorsData.forEach((mentor, index) => {
           const slide = document.createElement("div");
           slide.className = "swiper-slide";
           slide.innerHTML = `
             <article class="mentor-card" tabindex="0" aria-label="${mentor.name}">
-              <img class="mentor-photo" src="${mentor.photo}" alt="${mentor.name}" loading="lazy" />
+              <img class="mentor-photo mentor-photo--${index + 1}" src="${mentor.photo}" alt="${mentor.name}" loading="lazy" />
               <div class="mentor-base">
                 <h3 class="mentor-name">${mentor.name}</h3>
                 <p class="mentor-title">${mentor.title}</p>
@@ -1725,7 +1859,7 @@
                 <p>${mentor.research}</p>
                 <h3>Vai trò trong chương trình</h3>
                 <p>${mentor.role}</p>
-                <h3>Mô tả ngắn</h3>
+                
                 <p>${mentor.bio}</p>
               </div>
             </article>

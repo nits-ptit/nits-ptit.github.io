@@ -50,7 +50,7 @@ a:hover {
 .header-inner,
 .page,
 .footer {
-  width: min(1360px, calc(100% - 5cm));
+  width: min(1180px, calc(100% - 40px));
   margin: 0 auto;
 }
 
@@ -62,11 +62,12 @@ a:hover {
 }
 
 .brand {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 12px;
   color: var(--text);
-  min-width: 330px;
+  font-weight: 800;
+  min-width: 230px;
   text-align: left;
 }
 
@@ -76,22 +77,22 @@ a:hover {
 
 .brand-logo {
   display: block;
-  width: 150px;
-  height: 72px;
+  width: 58px;
+  height: 58px;
   object-fit: contain;
 }
 
-.brand-tagline {
-  color: var(--brand-dark);
-  font-size: 19px;
-  font-weight: 700;
-  line-height: 1.08;
-  margin-top: 2px;
-  white-space: nowrap;
+.brand span {
+  display: grid;
+  line-height: 1.15;
 }
 
-.brand-logo + .brand-tagline {
-  margin-top: 6px;
+.brand small {
+  color: var(--brand-dark);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
 }
 
 .nav {
@@ -293,20 +294,11 @@ li {
   .header-inner,
   .page,
   .footer {
-    width: min(100% - 48px, 1360px);
+    width: min(1180px, calc(100% - 40px));
   }
 
   .brand {
     min-width: 0;
-  }
-
-  .brand-logo {
-    width: 130px;
-    height: 64px;
-  }
-
-  .brand-tagline {
-    font-size: 17px;
   }
 
   .nav {
@@ -341,20 +333,11 @@ li {
   .header-inner,
   .page,
   .footer {
-    width: min(100% - 28px, 1360px);
+    width: min(100% - 28px, 1180px);
   }
 
   body {
     font-size: 17px;
-  }
-
-  .brand-logo {
-    width: 116px;
-    height: 56px;
-  }
-
-  .brand-tagline {
-    font-size: 15px;
   }
 
   .nav {
