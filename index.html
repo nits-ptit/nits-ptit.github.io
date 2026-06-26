@@ -8,6 +8,9 @@
       name="description"
       content="Website giới thiệu NITS Lab tại Học viện Công nghệ Bưu chính Viễn thông."
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;650;700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="assest/style.css" />
   </head>
   <body>
@@ -16,17 +19,18 @@
         <a class="brand" href="#about" aria-label="NITS Lab home">
           <img class="brand-logo" src="assest/image/nits.png" alt="NITS Lab" />
           <span>
-            NITS Lab
-            <small>Nurturing IT Student Talent</small>
+            NITS LAB
+            <small>Nurturing IT Student Talent Lab</small>
           </span>
         </a>
 
         <nav class="nav" aria-label="Điều hướng chính">
           <a class="active" href="#about">Giới thiệu</a>
-          <a href="#openings">Tuyển thành viên</a>
-          <!-- <a href="#news">Tin tức</a> -->
+          <!-- <a href="#openings">Tuyển thành viên</a> -->
+          
           <a href="#research">Nghiên cứu</a>
-          <a href="#publications">Công bố</a>
+          <a href="#news">News</a>
+          <a href="public.html">Công bố</a>
           <!-- <!-- <a href="#awards">Giải thưởng</a> -->
           <a href="resident.html">NITS RESIDENT</a> 
         </nav>
@@ -38,9 +42,9 @@
     <main class="page">
       <section class="section intro-section" id="about">
         <div class="intro">
-          <h1>NITS Lab</h1>
+          <h1>Nurturing IT Student Talent Lab</h1>
           <p>
-            Lab Ươm mầm Tài năng CNTT – PTIT NITS 🌱 được thành lập với mục tiêu xây dựng một môi trường học tập, nghiên cứu và sáng tạo hiện đại, chuyên sâu cho sinh viên Công nghệ Thông tin, Học viện Công nghệ Bưu chính Viễn thông.
+            Lab Ươm mầm Tài năng CNTT – PTIT NITS được thành lập với mục tiêu xây dựng một môi trường học tập, nghiên cứu và sáng tạo hiện đại, chuyên sâu cho sinh viên Công nghệ Thông tin, Học viện Công nghệ Bưu chính Viễn thông.
             <!-- Các hướng nghiên cứu chính của Lab bao gồm
             <strong>Generative Models</strong>,
             <strong>Large Language Models</strong>,
@@ -77,21 +81,22 @@
                  Hoàn thành chương trình tiến sĩ vào đầu năm 2024 và hiện đang công tác, giảng dạy tại PTIT.
             </p>
             <p>
-             Hướng nghiên cứu của tập trung vào 
-             Generative Models, Vision and Language Reasoning, 
-           Large Language Models, 
-             Large Vision-Language Models và khả năng khái quát hóa trên các miền dữ liệu.
+             Hướng nghiên cứu tập trung vào 
+             <strong>Vision and Language Reasoning</strong>, 
+             <strong>Large Language Models</strong>, 
+             <strong>Large Vision-Language Models</strong> và khả năng khái quát hóa trên các miền dữ liệu.
             </p>
-          </div>
-        </div>
-        <p class="contact-line">
+            <p class="contact-line">
             <strong>Email:</strong> longdh@ptit.edu.vn
             <span>&middot;</span>
             <a href="https://scholar.google.com/citations?user=unEG5bgAAAAJ&hl=vi">Google Scholar</a>
             <span>&middot;</span>
             <a href="https://github.com/NITS-Lab">GitHub</a>
           </p>
-      </section>
+          </div>
+        </div>
+        
+      <!-- </section>
 
       <section class="section" id="openings">
         <h2>Tuyển thành viên</h2>
@@ -111,7 +116,7 @@
           <strong>-&gt; Thông tin chi tiết:</strong> nội dung chương trình, quy trình tuyển chọn có thể được tìm thấy trong trang
           <strong><a href="resident.html">NTIS RESIDENT</a></strong>.
         </p>
-      </section>
+      </section> -->
 
       <!-- <section class="section" id="news">
         <h2>Tin tức</h2>
@@ -154,154 +159,85 @@
           tảng thuật toán, xây dựng benchmark và ứng dụng thực tế.
         </p>
 
-        <p><strong>-&gt; Generative Models &amp; Large Language Models:</strong></p>
+        <p class="research-topic"><strong>Generative Models &amp; Large Language Models:</strong></p>
         <ul>
           <li>Mô hình tạo sinh cho dữ liệu văn bản, hình ảnh và đa phương thức</li>
           <li>Huấn luyện, thích nghi và đánh giá mô hình ngôn ngữ lớn</li>
         </ul>
 
-        <p><strong>-&gt; Multilingual Language Models:</strong></p>
+        <p class="research-topic"><strong>Multilingual Language Models:</strong></p>
         <ul>
           <li>Xử lý ngôn ngữ tự nhiên cho tiếng Việt và các ngôn ngữ ít tài nguyên</li>
           <li>Benchmark, dữ liệu và phương pháp đánh giá năng lực đa ngôn ngữ</li>
         </ul>
 
-        <p><strong>-&gt; Vision-Language Reasoning &amp; Large Vision-Language Models:</strong></p>
+        <p class="research-topic"><strong>Vision-Language Reasoning &amp; Large Vision-Language Models:</strong></p>
         <ul>
           <li>Suy luận trên hình ảnh, video và câu hỏi đa phương thức</li>
           <li>Mô hình thị giác-ngôn ngữ lớn cho hiểu ngữ cảnh và tri thức nền</li>
         </ul>
 
-        <p><strong>-&gt; Domain Generalization:</strong></p>
+        <p class="research-topic"><strong>Domain Generalization:</strong></p>
         <ul>
           <li>Học biểu diễn bền vững trước dịch chuyển miền dữ liệu</li>
           <li>Phương pháp giúp mô hình tổng quát tốt trong môi trường mới</li>
         </ul>
       </section>
 
-      <section class="section" id="publications">
-        <h2>Công bố</h2>
+      <section class="section" id="news">
+        <div class="news-board">
+          <h2>News</h2>
+          <div class="news-list">
+            <article class="news-item">
+              <p>
+                <time datetime="2026-06-16">Jun 16, 2026:</time>
+                <span>Chúc mừng sinh viên Lã Quang Hải đã xuất sắc đạt học bổng Tier 3 - Cất Cánh Fellow, với tổng giá trị lên tới US$3000.</span>
+              </p>
+            </article>
 
-        <article class="publication">
-          <div>
-            <h3><a href="https://link.springer.com/content/pdf/10.1007/s44163-026-01411-z_reference.pdf">SADL: Sampling, Deliberation, and Pseudo-Labeling for In-Context Learning in Compositional Visual Question Answering</a></h3>
-            <p>
-              Long Hoang Dang, Thao Minh Le, Vuong Le, Tu Minh Phuong, Truyen Tran
-              <br />
-              <em>Discover Artificial Intelligence, 2026/4</em>
-            </p>
-          </div>
-        </article>
+            <article class="news-item">
+              <p>
+                <time datetime="2026-06-06">Jun 6, 2026:</time>
+                <span>Chúc mừng Nguyễn Minh Toàn đạt Giải Nhất tại Huawei ICT Competition 2025-2026 Global Final.</span>
+              </p>
+            </article>
 
-        <article class="publication">
-          <div>
-            <h3>VIVID: A Culturally Grounded Benchmark Exposing the Figurative Language Gap in Vietnamese NLP</h3>
-            <p>
-              Tu Tran Do, Nhat Ngoc Nguyen, Khanh-Tung Tran, Hoang D. Nguyen, Tu Minh Phuong, Long Hoang Dang
-              <br />
-              <em>LREC 2026, 2026/3</em>
-            </p>
-          </div>
-        </article>
+            <article class="news-item">
+              <p>
+                <time datetime="2026-05-06">May 6, 2026:</time>
+                <span>Chúc mừng nhóm nghiên cứu Long Hoang Dang, Thao Minh Le, Vuong Le, Tu Minh Phuong, Truyen Tran có bài báo chấp nhận tại tạp chí Discover Artificial Intelligence (Q1).</span>
+              </p>
+            </article>
 
-        <article class="publication">
-          <div>
-            <h3><a href="https://arxiv.org/pdf/2503.07631">OWLViz: An Open-World Benchmark for Visual Question Answering</a></h3>
-            <p>
-              Thuy Nguyen, Dang Nguyen, Hoang Nguyen, Thuan Luong, Long Hoang Dang, Viet Dac Lai
-              <br />
-              <em>AAMAS 2026, 2025/12</em>
-            </p>
-          </div>
-        </article>
+            <article class="news-item">
+              <p>
+                <time datetime="2026-05-06">May 6, 2026:</time>
+                <span>Chúc mừng nhóm nghiên cứu Nguyen Hai Yen, Minh Tung Bui, Franck Dernoncourt, Trung Bui, Viet Dac Lai, Long Hoang Dang đã có bài báo được chấp nhận tại CVPR Workshop HiGen 2026.</span>
+              </p>
+            </article>
 
-        <article class="publication">
-          <div>
-            <h3><a href="https://arxiv.org/pdf/2509.05352">Unsupervised Instance Segmentation with Superpixels</a></h3>
-            <p>
-              Cuong Manh Hoang
-              <br />
-              <em>Pattern Recognition, 2025/9/4</em>
-            </p>
-          </div>
-        </article>
+            <article class="news-item">
+              <p>
+                <time datetime="2026-04-23">Apr 23, 2026:</time>
+                <span>Chúc mừng thành viên lab Nguyễn Thị Tú Anh cùng đội Quillora.AI với sản phẩm Quillora đã xuất sắc đạt Giải Nhất tại cuộc thi “AI VÀ THƯ VIỆN TƯƠNG LAI”.</span>
+              </p>
+            </article>
 
-        <article class="publication">
-          <div>
-            <h3><a href="https://ojs.aaai.org/index.php/AAAI/article/view/32362">Generalized Class Discovery in Instance Segmentation</a></h3>
-            <p>
-              Cuong Manh Hoang, Yeejin Lee, Byeongkeun Kang
-              <br />
-              <em>Proceedings of the AAAI Conference on Artificial Intelligence, 2025/4</em>
-            </p>
-          </div>
-        </article>
+            <article class="news-item">
+              <p>
+                <time datetime="2026-03-06">Mar 6, 2026:</time>
+                <span>Chúc mừng nhóm sinh viên Nguyễn Thành An, Lê Xuân Dũng, Lã Quang Hải, Nguyễn Khắc Gia Hoàng tham gia trao đổi tại A2I2.</span>
+              </p>
+            </article>
 
-        <article class="publication">
-          <div>
-            <h3><a href="https://ojs.aaai.org/index.php/AAAI/article/download/32471/34626">Progressive Multi-granular Alignments for Grounded Reasoning in Large Vision-Language Models</a></h3>
-            <p>
-              Quang-Hung Le, Long Hoang Dang, Ngan Le, Truyen Tran, Thao Minh Le
-              <br />
-              <em>Thirty-Ninth AAAI Conference on Artificial Intelligence (AAAI-25), 2025</em>
-            </p>
+            <article class="news-item">
+              <p>
+                <time datetime="2025-12-10">Dec 10, 2025:</time>
+                <span>Chúc mừng Nguyễn Minh Hiếu đạt Giải Nhất OLP-AI Quốc gia 2025, Nguyễn Khắc Gia Hoàng đạt Giải Ba OLP-AI Quốc gia 2025.</span>
+              </p>
+            </article>
           </div>
-        </article>
-
-        <article class="publication">
-          <div>
-            <h3><a href="https://arxiv.org/pdf/2407.01987">AHMsys: An Automated HVAC Modeling System for BIM Project</a></h3>
-            <p>
-              Long Hoang Dang, Duy-Hung Nguyen, Thai Quang Le, Thinh Truong Nguyen, Clark Mei, Vu Hoang
-              <br />
-              <em>International Conference on Advances in Information and Communication Technology, 2024</em>
-            </p>
-          </div>
-        </article>
-
-        <article class="publication">
-          <div>
-            <h3><a href="https://arxiv.org/pdf/2310.16234">Pixel-level Clustering Network for Unsupervised Image Segmentation</a></h3>
-            <p>
-              Cuong Manh Hoang, Byeongkeun Kang
-              <br />
-              <em>Engineering Applications of Artificial Intelligence, 2024/1/1</em>
-            </p>
-          </div>
-        </article>
-
-        <article class="publication">
-          <div>
-            <h3><a href="https://ieeexplore.ieee.org/abstract/document/10272656/">Dynamic Reasoning for Movie QA: A Character-centric Approach</a></h3>
-            <p>
-              Long Hoang Dang, Thao Minh Le, Vuong Le, Tu Minh Phuong, Truyen Tran
-              <br />
-              <em>IEEE Transactions on Multimedia, 2023</em>
-            </p>
-          </div>
-        </article>
-
-        <article class="publication">
-          <div>
-            <h3><a href="https://arxiv.org/pdf/2106.13432">Hierarchical Object-oriented Spatio-Temporal Reasoning for Video Question Answering</a></h3>
-            <p>
-              Long Hoang Dang, Thao Minh Le, Vuong Le, Truyen Tran
-              <br />
-              <em>International Joint Conferences on Artificial Intelligence (IJCAI'21), 2021</em>
-            </p>
-          </div>
-        </article>
-
-        <article class="publication">
-          <div>
-            <h3><a href="https://arxiv.org/pdf/2104.05166">Object-Centric Representation Learning for Video Question Answering</a></h3>
-            <p>
-              Long Hoang Dang, Thao Minh Le, Vuong Le, Truyen Tran
-              <br />
-              <em>International Joint Conference on Neural Networks (IJCNN'21), 2021</em>
-            </p>
-          </div>
-        </article>
+        </div>
       </section>
 
       <!-- <section class="section" id="awards">
