@@ -267,5 +267,33 @@
     <footer class="footer">
       <p>&copy; 2026 NITS Lab &middot; Học viện Công nghệ Bưu chính Viễn thông</p>
     </footer>
+    <script>
+      const sectionLinks = Array.from(document.querySelectorAll(".nav a[href^='#']"));
+      const linkedSections = sectionLinks
+        .map((link) => ({
+          link,
+          section: document.querySelector(link.getAttribute("href"))
+        }))
+        .filter((item) => item.section);
+
+      function updateActiveSectionLink() {
+        const headerOffset = document.querySelector(".site-header")?.offsetHeight || 0;
+        const currentPoint = window.scrollY + headerOffset + 90;
+        let current = linkedSections[0];
+
+        linkedSections.forEach((item) => {
+          if (item.section.offsetTop <= currentPoint) {
+            current = item;
+          }
+        });
+
+        sectionLinks.forEach((link) => link.classList.remove("active"));
+        current?.link.classList.add("active");
+      }
+
+      window.addEventListener("scroll", updateActiveSectionLink, { passive: true });
+      window.addEventListener("load", updateActiveSectionLink);
+      updateActiveSectionLink();
+    </script>
   </body>
 </html>
