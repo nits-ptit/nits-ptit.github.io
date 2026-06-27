@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Công bố | NITS Lab</title>
+    <link rel="icon" type="image/png" href="assest/image/logo.png" />
     <meta
       name="description"
       content="Danh sách công bố khoa học của NITS Lab."
@@ -24,7 +25,13 @@
           </span>
         </a>
 
-        <nav class="nav" aria-label="Điều hướng chính">
+        <button class="nav-toggle" type="button" aria-label="Mở menu" aria-expanded="false" aria-controls="main-nav">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="nav" id="main-nav" aria-label="Điều hướng chính">
           <a href="index.html#about">Giới thiệu</a>
           <!-- <a href="index.html#openings">Tuyển thành viên</a> -->
           <a href="index.html#research">Nghiên cứu</a>
@@ -193,5 +200,32 @@
     <footer class="footer">
       <p>&copy; 2026 NITS Lab &middot; Học viện Công nghệ Bưu chính Viễn thông</p>
     </footer>
+    <script>
+      const siteHeader = document.querySelector(".site-header");
+      const navToggle = document.querySelector(".nav-toggle");
+      const mainNav = document.querySelector("#main-nav");
+
+      function closeMobileNav() {
+        siteHeader?.classList.remove("nav-open");
+        navToggle?.setAttribute("aria-expanded", "false");
+      }
+
+      navToggle?.addEventListener("click", () => {
+        const isOpen = siteHeader.classList.toggle("nav-open");
+        navToggle.setAttribute("aria-expanded", String(isOpen));
+      });
+
+      mainNav?.addEventListener("click", (event) => {
+        if (event.target.closest("a")) {
+          closeMobileNav();
+        }
+      });
+
+      window.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          closeMobileNav();
+        }
+      });
+    </script>
   </body>
 </html>

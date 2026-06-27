@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>NITS Research Residency | NITS Lab</title>
+    <link rel="icon" type="image/png" href="assest/image/logo.png" />
     <meta
       name="description"
       content="Chương trình NITS Research Residency kết nối sinh viên, mentor học thuật và đối tác để phát triển năng lực nghiên cứu AI."
@@ -70,11 +71,13 @@
         align-items: center;
         justify-content: space-between;
         gap: 24px;
+        min-width: 0;
       }
 
       .brand {
         display: flex;
         align-items: center;
+        flex: 0 1 auto;
         gap: 12px;
         font-weight: 800;
         color: var(--brand-2);
@@ -88,6 +91,7 @@
 
       .brand span {
         display: grid;
+        min-width: 0;
         line-height: 1.15;
       }
 
@@ -104,9 +108,15 @@
         flex-wrap: wrap;
         justify-content: flex-end;
         gap: 18px;
+        min-width: 0;
         color: var(--muted);
         font-size: 15px;
         font-weight: 650;
+      }
+
+      .nav-links a {
+        white-space: nowrap;
+        line-height: 1.2;
       }
 
       .nav-links a:hover {
@@ -116,6 +126,43 @@
       .nav-links a.active {
         color: var(--brand);
         font-weight: 800;
+      }
+
+      .nav-toggle {
+        display: none;
+        flex: 0 0 auto;
+        width: 52px;
+        height: 52px;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 6px;
+        border: 0;
+        border-radius: 8px;
+        background: linear-gradient(180deg, #6876bd 0%, #4e5aa0 100%);
+        box-shadow: 0 2px 0 rgba(14, 31, 61, 0.28);
+        cursor: pointer;
+      }
+
+      .nav-toggle span {
+        display: block;
+        width: 20px;
+        height: 2px;
+        border-radius: 999px;
+        background: #ffffff;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+      }
+
+      .topbar.nav-open .nav-toggle span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+
+      .topbar.nav-open .nav-toggle span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .topbar.nav-open .nav-toggle span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
       }
 
       .hero {
@@ -1096,16 +1143,13 @@
         transform: translateY(-50%) scale(1.05);
       }
 
-      /* Hide side buttons on small screens (keep swipe enabled) */
-      @media (max-width: 800px) {
-        .mentor-side { display: none; }
-      }
-
       .mentor-pagination {
-        display: inline-flex;
-        width: auto;
+        display: flex;
+        width: 100%;
         align-items: center;
+        justify-content: center;
         gap: 8px;
+        margin-top: 18px;
       }
 
       .mentor-pagination .swiper-pagination-bullet {
@@ -1113,10 +1157,37 @@
         height: 10px;
         opacity: 1;
         background: rgba(14, 31, 61, 0.25);
+        cursor: pointer;
       }
 
       .mentor-pagination .swiper-pagination-bullet-active {
+        width: 24px;
+        border-radius: 999px;
         background: var(--brand);
+      }
+
+      @media (max-width: 800px) {
+        .mentor-side {
+          width: 42px;
+          height: 42px;
+          opacity: 0.96;
+          pointer-events: auto;
+          background: rgba(255, 255, 255, 0.96);
+          color: var(--brand-2);
+        }
+
+        .mentor-side.mentor-prev {
+          left: 8px;
+        }
+
+        .mentor-side.mentor-next {
+          right: 8px;
+        }
+
+        .mentor-wrap:hover .mentor-side,
+        .mentor-wrap:focus-within .mentor-side {
+          transform: translateY(-50%);
+        }
       }
 
       .role {
@@ -1235,6 +1306,11 @@
 
         .nav-links {
           justify-content: flex-start;
+          gap: 8px 12px;
+        }
+
+        .nav-links a {
+          padding: 4px 0;
         }
 
         .hero {
@@ -1289,6 +1365,10 @@
           font-size: 16px;
         }
 
+        .topbar {
+          z-index: 30;
+        }
+
         .nav,
         .hero-inner,
         .section,
@@ -1296,12 +1376,76 @@
           width: min(100% - 28px, 1180px);
         }
 
+        .nav {
+          position: relative;
+          min-height: 68px;
+          align-items: center;
+          flex-direction: row;
+          justify-content: space-between;
+          gap: 12px;
+          padding: 8px 0;
+        }
+
         .section {
           padding: 44px 0;
         }
 
+        .nav-toggle {
+          display: inline-flex;
+        }
+
         .nav-links {
-          gap: 10px 14px;
+          position: absolute;
+          top: calc(100% + 8px);
+          left: 0;
+          right: 0;
+          display: none;
+          width: 100%;
+          margin: 0;
+          padding: 10px;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 4px;
+          overflow: visible;
+          border: 1px solid rgba(217, 208, 195, 0.95);
+          border-radius: 8px;
+          background: rgba(251, 250, 247, 0.98);
+          box-shadow: 0 18px 38px rgba(16, 24, 32, 0.14);
+          font-size: 14px;
+        }
+
+        .topbar.nav-open .nav-links {
+          display: flex;
+        }
+
+        .nav-links a {
+          width: 100%;
+          padding: 11px 12px;
+          border: 0;
+          border-radius: 6px;
+          background: transparent;
+        }
+
+        .nav-links a.active {
+          background: rgba(123, 23, 23, 0.08);
+        }
+
+        .brand {
+          gap: 10px;
+          max-width: calc(100% - 64px);
+        }
+
+        .brand img {
+          width: 48px;
+          height: 48px;
+        }
+
+        .brand small {
+          max-width: 100%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          font-size: 10px;
         }
 
         .hero-inner {
@@ -1381,7 +1525,12 @@
             <small>Nurturing IT Student Talent Lab</small>
           </span>
         </a>
-        <div class="nav-links">
+        <button class="nav-toggle" type="button" aria-label="Mở menu" aria-expanded="false" aria-controls="resident-nav-links">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="nav-links" id="resident-nav-links">
           <a href="#overview">Tổng quan</a>
           <a href="#tracks">Lộ trình</a>
           <a href="#mentors">Mentor</a>
@@ -1508,7 +1657,7 @@
           <div class="swiper mentor-swiper" id="mentor-swiper">
             <div class="swiper-wrapper" id="mentor-slides"></div>
           </div>
-          <!-- Side overlay navigation (hidden by default, fade in on hover) -->
+          <!-- Side overlay navigation -->
           <button class="mentor-side mentor-prev" type="button" aria-label="Mentor trước đó">
             <svg width="20" height="32" viewBox="0 0 20 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M17 2L3 16L17 30" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1519,7 +1668,7 @@
               <path d="M3 2L17 16L3 30" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </button>
-          
+          <div class="mentor-pagination" aria-label="Vị trí mentor"></div>
         </div>
       </section>
 
@@ -1758,7 +1907,7 @@
                 Nếu bạn quan tâm đến chương trình Resident của NITS Lab, hãy đăng ký để chúng tôi có thể kết nối và trao đổi thêm về mục tiêu, định hướng nghiên cứu cũng như cơ hội hợp tác phù hợp.
               </p>
               <div class="cta-actions">
-                <a class="button primary" href="#register-form" data-form-link="">Đăng ký ngay</a>
+                <a class="button primary" href="https://forms.gle/qjZHqShHEVdZH2tr9" data-form-link="">Đăng ký ngay</a>
                 <a class="cta-link" href="index.html">Quay về NITS Lab</a>
               </div>
             </div>
@@ -1904,6 +2053,32 @@
       window.addEventListener("scroll", updateActiveSectionLink, { passive: true });
       window.addEventListener("load", updateActiveSectionLink);
       updateActiveSectionLink();
+
+      const topbar = document.querySelector(".topbar");
+      const navToggle = document.querySelector(".nav-toggle");
+      const navLinks = document.querySelector("#resident-nav-links");
+
+      function closeMobileNav() {
+        topbar?.classList.remove("nav-open");
+        navToggle?.setAttribute("aria-expanded", "false");
+      }
+
+      navToggle?.addEventListener("click", () => {
+        const isOpen = topbar.classList.toggle("nav-open");
+        navToggle.setAttribute("aria-expanded", String(isOpen));
+      });
+
+      navLinks?.addEventListener("click", (event) => {
+        if (event.target.closest("a")) {
+          closeMobileNav();
+        }
+      });
+
+      window.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          closeMobileNav();
+        }
+      });
     </script>
   </body>
 </html>
