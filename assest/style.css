@@ -138,6 +138,67 @@ a:hover {
   font-weight: 800;
 }
 
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  gap: 7px;
+  min-height: 38px;
+  padding: 7px 10px;
+  border: 1px solid rgba(217, 208, 195, 0.95);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--brand-dark);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+  box-shadow: 0 2px 0 rgba(14, 31, 61, 0.08);
+  cursor: pointer;
+}
+
+.lang-toggle:hover {
+  border-color: var(--brand);
+  color: var(--brand);
+}
+
+.lang-toggle__flag {
+  position: relative;
+  display: inline-block;
+  width: 24px;
+  height: 16px;
+  overflow: hidden;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(14, 31, 61, 0.18);
+}
+
+.lang-toggle__flag.flag--gb {
+  background:
+    linear-gradient(33deg, transparent 0 42%, #ffffff 42% 48%, #c8102e 48% 52%, #ffffff 52% 58%, transparent 58%),
+    linear-gradient(147deg, transparent 0 42%, #ffffff 42% 48%, #c8102e 48% 52%, #ffffff 52% 58%, transparent 58%),
+    linear-gradient(90deg, transparent 0 42%, #ffffff 42% 58%, transparent 58%),
+    linear-gradient(0deg, transparent 0 35%, #ffffff 35% 65%, transparent 65%),
+    linear-gradient(90deg, transparent 0 46%, #c8102e 46% 54%, transparent 54%),
+    linear-gradient(0deg, transparent 0 40%, #c8102e 40% 60%, transparent 60%),
+    #012169;
+}
+
+.lang-toggle__flag.flag--vn {
+  background: #da251d;
+}
+
+.lang-toggle__flag.flag--vn::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  background: #ffcd00;
+  transform: translate(-50%, -50%);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 56%, 79% 91%, 50% 70%, 21% 91%, 32% 56%, 2% 35%, 39% 35%);
+}
+
 .nav-toggle {
   display: none;
   flex: 0 0 auto;
@@ -494,6 +555,10 @@ li {
     padding: 4px 0;
   }
 
+  .lang-toggle {
+    align-self: flex-start;
+  }
+
   .theme-icon {
     margin-left: auto;
   }
@@ -547,6 +612,17 @@ li {
     display: inline-flex;
   }
 
+  .lang-toggle {
+    width: 52px;
+    height: 52px;
+    min-height: 52px;
+    padding: 0;
+  }
+
+  .lang-toggle__label {
+    display: none;
+  }
+
   .nav {
     position: absolute;
     top: calc(100% + 8px);
@@ -585,7 +661,7 @@ li {
 
   .brand {
     gap: 10px;
-    max-width: calc(100% - 64px);
+    max-width: calc(100% - 128px);
   }
 
   .brand-logo {
